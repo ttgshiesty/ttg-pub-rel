@@ -1,0 +1,389 @@
+[
+  {
+    "id": "gunsmith",
+    "name": "Gunsmith",
+    "image": "/workshop/gunsmith.webp",
+    "levels": [
+      {
+        "level": 1,
+        "items": [
+          {
+            "itemId": "metal_parts",
+            "quantity": 20
+          },
+          {
+            "itemId": "rubber_parts",
+            "quantity": 30
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "items": [
+          {
+            "itemId": "rusted_tools",
+            "quantity": 3
+          },
+          {
+            "itemId": "mechanical_components",
+            "quantity": 5
+          },
+          {
+            "itemId": "wasp_driver",
+            "quantity": 8
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "items": [
+          {
+            "itemId": "rusted_gear",
+            "quantity": 3
+          },
+          {
+            "itemId": "advanced_mechanical_components",
+            "quantity": 5
+          },
+          {
+            "itemId": "sentinel_firing_core",
+            "quantity": 4
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "gear_bench",
+    "name": "Gear Bench",
+    "image": "/workshop/gearbench.webp",
+    "levels": [
+      {
+        "level": 1,
+        "items": [
+          {
+            "itemId": "plastic_parts",
+            "quantity": 25
+          },
+          {
+            "itemId": "fabric",
+            "quantity": 30
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "items": [
+          {
+            "itemId": "power_cable",
+            "quantity": 3
+          },
+          {
+            "itemId": "electrical_components",
+            "quantity": 5
+          },
+          {
+            "itemId": "hornet_driver",
+            "quantity": 5
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "items": [
+          {
+            "itemId": "industrial_battery",
+            "quantity": 3
+          },
+          {
+            "itemId": "advanced_electrical_components",
+            "quantity": 5
+          },
+          {
+            "itemId": "bastion_cell",
+            "quantity": 6
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "medical_lab",
+    "name": "Medical Lab",
+    "image": "/workshop/medicallab.webp",
+    "levels": [
+      {
+        "level": 1,
+        "items": [
+          {
+            "itemId": "fabric",
+            "quantity": 50
+          },
+          {
+            "itemId": "arc_alloy",
+            "quantity": 6
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "items": [
+          {
+            "itemId": "cracked_bioscanner",
+            "quantity": 2
+          },
+          {
+            "itemId": "durable_cloth",
+            "quantity": 5
+          },
+          {
+            "itemId": "tick_pod",
+            "quantity": 8
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "items": [
+          {
+            "itemId": "rusted_shut_medical_kit",
+            "quantity": 3
+          },
+          {
+            "itemId": "antiseptic",
+            "quantity": 8
+          },
+          {
+            "itemId": "surveyor_vault",
+            "quantity": 5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "explosives_station",
+    "name": "Explosives Station",
+    "image": "/workshop/explosivesstation.webp",
+    "levels": [
+      {
+        "level": 1,
+        "items": [
+          {
+            "itemId": "chemicals",
+            "quantity": 50
+          },
+          {
+            "itemId": "arc_alloy",
+            "quantity": 6
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "items": [
+          {
+            "itemId": "synthesized_fuel",
+            "quantity": 3
+          },
+          {
+            "itemId": "crude_explosives",
+            "quantity": 5
+          },
+          {
+            "itemId": "pop_trigger",
+            "quantity": 5
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "items": [
+          {
+            "itemId": "laboratory_reagents",
+            "quantity": 3
+          },
+          {
+            "itemId": "explosive_compound",
+            "quantity": 5
+          },
+          {
+            "itemId": "rocketeer_driver",
+            "quantity": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "utility_station",
+    "name": "Utility Station",
+    "image": "/workshop/utilitystation.webp",
+    "levels": [
+      {
+        "level": 1,
+        "items": [
+          {
+            "itemId": "plastic_parts",
+            "quantity": 50
+          },
+          {
+            "itemId": "arc_alloy",
+            "quantity": 6
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "items": [
+          {
+            "itemId": "damaged_heat_sink",
+            "quantity": 2
+          },
+          {
+            "itemId": "electrical_components",
+            "quantity": 5
+          },
+          {
+            "itemId": "snitch_scanner",
+            "quantity": 6
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "items": [
+          {
+            "itemId": "fried_motherboard",
+            "quantity": 3
+          },
+          {
+            "itemId": "advanced_electrical_components",
+            "quantity": 5
+          },
+          {
+            "itemId": "leaper_pulse_unit",
+            "quantity": 4
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "refiner",
+    "name": "Refiner",
+    "image": "/workshop/refiner.webp",
+    "levels": [
+      {
+        "level": 1,
+        "items": [
+          {
+            "itemId": "metal_parts",
+            "quantity": 60
+          },
+          {
+            "itemId": "arc_powercell",
+            "quantity": 5
+          }
+        ]
+      },
+      {
+        "level": 2,
+        "items": [
+          {
+            "itemId": "toaster",
+            "quantity": 3
+          },
+          {
+            "itemId": "arc_motion_core",
+            "quantity": 5
+          },
+          {
+            "itemId": "fireball_burner",
+            "quantity": 8
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "items": [
+          {
+            "itemId": "motor",
+            "quantity": 3
+          },
+          {
+            "itemId": "arc_circuitry",
+            "quantity": 10
+          },
+          {
+            "itemId": "bombardier_cell",
+            "quantity": 6
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "scrappy",
+    "name": "Scrappy",
+    "image": null,
+    "levels": [
+      {
+        "level": 2,
+        "items": [
+          {
+            "itemId": "dog_collar",
+            "quantity": 1
+          }
+        ]
+      },
+      {
+        "level": 3,
+        "items": [
+          {
+            "itemId": "lemon",
+            "quantity": 3
+          },
+          {
+            "itemId": "apricot",
+            "quantity": 3
+          }
+        ]
+      },
+      {
+        "level": 4,
+        "items": [
+          {
+            "itemId": "prickly_pear",
+            "quantity": 6
+          },
+          {
+            "itemId": "olives",
+            "quantity": 6
+          },
+          {
+            "itemId": "cat_bed",
+            "quantity": 1
+          }
+        ]
+      },
+      {
+        "level": 5,
+        "items": [
+          {
+            "itemId": "mushroom",
+            "quantity": 12
+          },
+          {
+            "itemId": "apricot",
+            "quantity": 12
+          },
+          {
+            "itemId": "very_comfortable_pillow",
+            "quantity": 3
+          }
+        ]
+      }
+    ]
+  }
+]

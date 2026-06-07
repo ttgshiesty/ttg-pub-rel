@@ -1,0 +1,312 @@
+/* --- ARC RAIDERS OFFICIAL THEME --- */
+/* Colors are defined in index.css :root and used here via CSS variables */
+/* Font assignments:
+ * - Urbanist    → Tabs + Headings (--font-tabs, --font-heading)
+ * - Barlow      → Body text + Inputs (--font-body, --font-inputs)
+ * - Prompt      → Headings alt (--font-heading-alt)
+ * - JetBrains Mono → HUD / Data (--font-hud)
+ */
+
+/* --- 1. GLOBAL ITEM SLOT (Blueprints, Weapons, Designs) --- */
+.item-slot {
+  width: 72px;
+  height: 72px;
+  position: relative;
+  background-color: var(--color-arc-dark-background);
+  background-size: cover;
+  background-position: center;
+  border: 1px solid var(--color-arc-border);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.item-slot:hover {
+  transform: scale(1.1); /* The "Pop" effect */
+  z-index: 10;
+}
+
+/* --- 2. RARITY SYSTEM (AUTOMATIC) --- */
+/* Uses --color-arc-* variables from index.css */
+/* Vivid full-box rarity backgrounds */
+
+/* Common */
+.item-slot[data-rarity='Common'] {
+  border: 2px solid var(--color-arc-common);
+  border-left: 5px solid var(--color-arc-common);
+  background:
+    linear-gradient(
+      160deg,
+      color-mix(in srgb, var(--color-arc-common), transparent 55%) 0%,
+      color-mix(in srgb, var(--color-arc-common), transparent 82%) 40%,
+      rgba(11, 14, 20, 0.95) 100%
+    );
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--color-arc-common), transparent 70%),
+    0 0 12px color-mix(in srgb, var(--color-arc-common), transparent 60%);
+}
+
+/* Uncommon */
+.item-slot[data-rarity='Uncommon'] {
+  border: 2px solid var(--color-arc-uncommon);
+  border-left: 5px solid var(--color-arc-uncommon);
+  background:
+    linear-gradient(
+      160deg,
+      color-mix(in srgb, var(--color-arc-uncommon), transparent 55%) 0%,
+      color-mix(in srgb, var(--color-arc-uncommon), transparent 82%) 40%,
+      rgba(11, 14, 20, 0.95) 100%
+    );
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--color-arc-uncommon), transparent 70%),
+    0 0 14px color-mix(in srgb, var(--color-arc-uncommon), transparent 60%);
+}
+
+/* Rare / Blueprints */
+.item-slot[data-rarity='Rare'],
+.item-slot[data-rarity='Blueprint'] {
+  border: 2px solid var(--color-arc-rare);
+  border-left: 5px solid var(--color-arc-rare);
+  background:
+    linear-gradient(
+      160deg,
+      color-mix(in srgb, var(--color-arc-rare), transparent 55%) 0%,
+      color-mix(in srgb, var(--color-arc-rare), transparent 82%) 40%,
+      rgba(11, 14, 20, 0.95) 100%
+    ),
+    url('https://assets.shiesty.me/items/blueprint_bg.png');
+  background-size: cover;
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--color-arc-rare), transparent 70%),
+    0 0 16px color-mix(in srgb, var(--color-arc-rare), transparent 60%);
+}
+
+/* Epic */
+.item-slot[data-rarity='Epic'] {
+  border: 2px solid var(--color-arc-epic);
+  border-left: 5px solid var(--color-arc-epic);
+  background:
+    linear-gradient(
+      160deg,
+      color-mix(in srgb, var(--color-arc-epic), transparent 55%) 0%,
+      color-mix(in srgb, var(--color-arc-epic), transparent 82%) 40%,
+      rgba(11, 14, 20, 0.95) 100%
+    );
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--color-arc-epic), transparent 70%),
+    0 0 18px color-mix(in srgb, var(--color-arc-epic), transparent 60%);
+  filter: drop-shadow(0 0 5px var(--color-arc-epic));
+}
+
+/* Legendary */
+.item-slot[data-rarity='Legendary'] {
+  border: 2px solid var(--color-arc-legendary);
+  border-left: 5px solid var(--color-arc-legendary);
+  background:
+    linear-gradient(
+      160deg,
+      color-mix(in srgb, var(--color-arc-legendary), transparent 55%) 0%,
+      color-mix(in srgb, var(--color-arc-legendary), transparent 82%) 40%,
+      rgba(11, 14, 20, 0.95) 100%
+    );
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--color-arc-legendary), transparent 70%),
+    0 0 20px color-mix(in srgb, var(--color-arc-legendary), transparent 60%);
+  filter: drop-shadow(0 0 10px var(--color-arc-legendary));
+  animation: pulse-legendary 2s infinite alternate;
+}
+
+/* --- 3. WEAPON TIER UPGRADES (The 8 Weapons) --- */
+/* Shows Roman Numerals (I, II, III, IV) based on tier number */
+.item-slot[data-tier]::after {
+  position: absolute;
+  top: 2px;
+  right: 4px;
+  font-family: var(--font-body);
+  font-weight: 800;
+  font-size: 10px;
+  color: #ff9800;
+  letter-spacing: 0.04em;
+  text-shadow: 0 0 2px #9c27b0;
+}
+
+.item-slot[data-tier='1']::after {
+  content: 'I';
+}
+.item-slot[data-tier='2']::after {
+  content: 'II';
+}
+.item-slot[data-tier='3']::after {
+  content: 'III';
+}
+.item-slot[data-tier='4']::after {
+  content: 'IV';
+  border-bottom: 1px solid white;
+}
+
+/* --- 4. ITEM STATUS (Locked vs Learned) --- */
+.item-slot[data-learned='false'] {
+  opacity: 0.5;
+  filter: grayscale(1);
+}
+
+.item-slot[data-learned='false']::before {
+  content: 'LOCKED';
+  position: absolute;
+  font-size: 8px;
+  color: #ff4444;
+  bottom: -15px;
+}
+
+/* --- 5. ANIMATIONS --- */
+@keyframes pulse-legendary {
+  from {
+    filter: drop-shadow(0 0 5px var(--color-arc-legendary));
+  }
+  to {
+    filter: drop-shadow(0 0 15px var(--color-arc-legendary));
+  }
+}
+/* Barrel roll triggered by activeTab change */
+.do-barrel-roll {
+  animation: barrelRoll 0.8s ease-in-out;
+}
+
+@keyframes barrelRoll {
+  from {
+    transform: rotateY(0deg) rotateZ(0deg) scale(1);
+  }
+
+  50% {
+    transform: rotateY(180deg) rotateZ(180deg) scale(1.08);
+  }
+
+  to {
+    transform: rotateY(360deg) rotateZ(360deg) scale(1);
+  }
+}
+/* The Barrel Roll for Raiders images */
+.raider-image {
+  transition: transform 0.8s ease;
+}
+.raider-image:hover {
+  transform: rotateY(360deg);
+}
+
+/* ─── STATGRID STYLES (from statgrid.json) ────────────────────────────────── */
+/* The Main HUD Stat Box */
+.hud-box {
+  background: rgba(0, 0, 0, 0.95);
+  border: 1px solid var(--color-arc-border);
+  width: 250px;
+  position: relative;
+  font-family: var(--font-hud);
+  color: var(--color-arc-white);
+  border-left: 3px solid var(--color-arc-rare);
+}
+
+.main-icon {
+  width: 50px;
+  filter: drop-shadow(0 0 8px var(--color-arc-rare));
+}
+
+.hud-title {
+  display: block;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 10px 10px 2px 10px;
+  color: var(--color-arc-rare);
+  text-transform: uppercase;
+}
+
+.hud-desc {
+  font-size: 11px;
+  color: var(--color-arc-muted);
+  padding: 0 10px 10px 10px;
+}
+
+/* If an item is locked, overlay the Locked.webp */
+.hud-box[data-status='locked']::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6)
+    url('https://assets.shiesty.me/dont.webp') no-repeat center;
+  background-size: 40px;
+}
+
+.stat-box {
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid var(--color-arc-border);
+  padding: 15px;
+  position: relative;
+  transition: all 0.2s ease-in-out;
+}
+
+.stat-box:hover {
+  border-color: var(--color-arc-rare);
+  box-shadow: 0 0 15px rgba(0, 128, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.ammo-mini-icon {
+  width: 16px;
+  filter: brightness(0.8) sepia(1) hue-rotate(140deg) saturate(5); /* Makes white icons Cyan */
+}
+
+/* Enhanced Stat Boxes for Projects Page */
+.project-stat-box {
+  background: rgba(0, 0, 0, 0.95);
+  border: 1px solid var(--color-arc-border);
+  border-left: 3px solid var(--color-arc-rare);
+  padding: 12px;
+  position: relative;
+  transition: all 0.2s ease-in-out;
+  font-family: var(--font-hud);
+  color: var(--color-arc-white);
+}
+
+.project-stat-box:hover {
+  border-color: var(--color-arc-rare);
+  box-shadow: 0 0 15px rgba(0, 128, 255, 0.3);
+  transform: translateY(-2px);
+  background: rgba(0, 0, 0, 0.98);
+}
+
+.project-stat-box .stat-icon {
+  width: 16px;
+  filter: drop-shadow(0 0 4px var(--color-arc-rare));
+}
+
+.project-stat-box .stat-label {
+  font-size: 11px;
+  color: var(--color-arc-muted);
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.project-stat-box .stat-value {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--color-arc-rare);
+  text-shadow: 0 0 8px rgba(0, 128, 255, 0.5);
+}
+
+/* --- 6. ITEM BLUEPRINT BACKGROUND --- */
+.item-blueprint-bg {
+  width: 64px;
+  height: 64px;
+  background-image: url('https://assets.shiesty.me/items/blueprint_bg.png');
+  background-size: cover;
+  background-position: center;
+  border-radius: 0.375rem;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid var(--color-arc-border);
+}

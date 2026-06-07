@@ -1,0 +1,182 @@
+/* Compact Market Card - Wiki-Style Item Box */
+.container {
+  width: 116px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-family: inherit;
+}
+
+.itemCell {
+  position: relative;
+  width: 116px;
+  height: 100px;
+  border: 1px solid #686868;
+  border-radius: 10px;
+  background-color: #0d0c14;
+  background-image: linear-gradient(to right, rgb(40, 44, 48) 0%, rgb(5, 13, 36) 100%);
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow:
+    inset 0 0 18px rgba(0, 0, 0, 0.42),
+    0 0 0 1px color-mix(in srgb, var(--item-rarity-color, #686868) 35%, transparent);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.itemCell:hover {
+  border-color: var(--item-rarity-color, #888);
+  filter: brightness(1.08);
+  box-shadow:
+    inset 0 0 18px rgba(0, 0, 0, 0.32),
+    0 0 14px color-mix(in srgb, var(--item-rarity-color, #888) 28%, transparent);
+}
+
+.itemCell::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 35%, rgba(255, 255, 255, 0.18), transparent 44%),
+    linear-gradient(180deg, rgba(4, 6, 12, 0.04), rgba(4, 6, 12, 0.64));
+}
+
+/* Clickable overlay */
+.clickableOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+}
+
+/* Image Container */
+.itemImage {
+  position: relative;
+  z-index: 3;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  overflow: hidden;
+}
+
+.itemImage img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.2s ease;
+}
+
+.itemCell:hover .itemImage img {
+  transform: scale(1.08);
+}
+
+/* rarity Curve/Glow - Corner accent based on rarity */
+.rarityCurve {
+  position: absolute;
+  bottom: -21px;
+  left: -21px;
+  width: 50px;
+  height: 50px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* rarity border colors for the cell */
+.rarityCommon {
+  border-color: #6c6c6c;
+}
+.rarityUncommon {
+  border-color: #26bf57;
+}
+.rarityRare {
+  border-color: #00a9f2;
+}
+.rarityEpic {
+  border-color: #af2e86;
+}
+.rarityLegendary {
+  border-color: #ffc600;
+}
+
+/* Bottom Data Bar */
+.dataTable {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 22px;
+  padding: 0 4px;
+  background: rgb(6, 11, 22);
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--item-rarity-color, #686868) 24%, #060b16), #060b16 70%),
+    rgb(6, 11, 22);
+  border-top: 1px solid color-mix(in srgb, var(--item-rarity-color, #686868) 42%, transparent);
+  border-radius: 0 0 9px 9px;
+  font-size: 12px;
+  color: #ccc;
+  position: relative;
+  z-index: 5;
+}
+
+.categoryIcon {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.categoryIcon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.price {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #ffc600;
+}
+
+.price img {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+}
+
+/* Item Name Label */
+.itemName {
+  font-size: 13px;
+  color: #60a5fa;
+  text-decoration: none;
+  line-height: 1.2;
+  font-weight: 500;
+  text-align: center;
+  padding: 4px 1px;
+  width: 116px;
+  overflow-wrap: break-word;
+  transition: color 0.2s ease;
+}
+
+.itemName:hover {
+  color: #93c5fd;
+  text-decoration: underline;
+}
+
+/* rarity text colors */
+.nameCommon { color: #9ca3af; }
+.nameUncommon { color: #26bf57; }
+.nameRare { color: #00a9f2; }
+.nameEpic { color: #c43198; }
+.nameLegendary { color: #ffc600; }

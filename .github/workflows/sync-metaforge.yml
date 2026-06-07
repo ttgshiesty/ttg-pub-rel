@@ -1,0 +1,43 @@
+name: Sync Metaforge items
+
+on:
+  push:
+    branches:
+      - workflow-disabled
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-metaforge
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Sync Metaforge data into items-master
+        run: node ./scripts/sync-metaforge.mjs
+
+      - name: Commit updated items-master and quests
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "No changes."
+            exit 0
+          fi
+
+          git add client/src/data/items-master.json client/src/data/quest/
+          git commit -m "chore: sync metaforge data"
+          git push

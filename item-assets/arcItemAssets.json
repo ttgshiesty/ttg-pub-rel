@@ -1,0 +1,2692 @@
+[
+  {
+    "gameAssetId": "7507512",
+    "itemId": "music_album",
+    "name": "Music Album"
+  },
+  {
+    "gameAssetId": "10866537",
+    "itemId": "arc_synthetic_resin",
+    "name": "ARC Synthetic Resin"
+  },
+  {
+    "gameAssetId": "36123868",
+    "itemId": "dam_control_tower_key",
+    "name": "Dam Control Center Tower Key"
+  },
+  {
+    "gameAssetId": "42589958",
+    "itemId": "flow_controller",
+    "name": "Flow Controller"
+  },
+  {
+    "gameAssetId": "50992628",
+    "itemId": "combat_mk1",
+    "name": "Combat Mk. 1"
+  },
+  {
+    "gameAssetId": "75778531",
+    "itemId": "extended_medium_mag_iii_blueprint",
+    "name": "Extended Medium Mag III Blueprint"
+  },
+  {
+    "gameAssetId": "106628713",
+    "itemId": "broken_taser",
+    "name": "Broken Taser"
+  },
+  {
+    "gameAssetId": "130254116",
+    "itemId": "rope",
+    "name": "Rope"
+  },
+  {
+    "gameAssetId": "134545014",
+    "itemId": "ion_sputter",
+    "name": "Ion Sputter"
+  },
+  {
+    "gameAssetId": "134844346",
+    "itemId": "damaged_fireball_burner",
+    "name": "Damaged Fireball Burner"
+  },
+  {
+    "gameAssetId": "203993527",
+    "itemId": "heavy_shield",
+    "name": "Heavy Shield"
+  },
+  {
+    "gameAssetId": "209734646",
+    "itemId": "kettle_i",
+    "name": "Kettle I"
+  },
+  {
+    "gameAssetId": "226834931",
+    "itemId": "il_toro_iii",
+    "name": "Il Toro III"
+  },
+  {
+    "gameAssetId": "246081482",
+    "itemId": "advanced_arc_powercell",
+    "name": "Advanced ARC Powercell"
+  },
+  {
+    "gameAssetId": "266335884",
+    "itemId": "lure_grenade_blueprint",
+    "name": "Lure Grenade Blueprint"
+  },
+  {
+    "gameAssetId": "269867465",
+    "itemId": "il_toro_ii",
+    "name": "Il Toro II"
+  },
+  {
+    "gameAssetId": "276503907",
+    "itemId": "burletta_iii",
+    "name": "Burletta III"
+  },
+  {
+    "gameAssetId": "285336333",
+    "itemId": "camera_lens",
+    "name": "Camera Lens"
+  },
+  {
+    "gameAssetId": "287464378",
+    "itemId": "rusted_gear",
+    "name": "Rusted Gear"
+  },
+  {
+    "gameAssetId": "303320919",
+    "itemId": "processor",
+    "name": "Processor"
+  },
+  {
+    "gameAssetId": "303567898",
+    "itemId": "looting_mk3_survivor",
+    "name": "Looting Mk. 3 (Survivor)"
+  },
+  {
+    "gameAssetId": "313013500",
+    "itemId": "medium_ammo",
+    "name": "Medium Ammo"
+  },
+  {
+    "gameAssetId": "313149189",
+    "itemId": "power_rod",
+    "name": "Power Rod"
+  },
+  {
+    "gameAssetId": "313938846",
+    "itemId": "bicycle_pump",
+    "name": "Bicycle Pump"
+  },
+  {
+    "gameAssetId": "331271227",
+    "itemId": "il_toro_iv",
+    "name": "Il Toro IV"
+  },
+  {
+    "gameAssetId": "341892685",
+    "itemId": "burned_arc_circuitry",
+    "name": "Burned Arc Circuitry"
+  },
+  {
+    "gameAssetId": "346923872",
+    "itemId": "angled_grip_i",
+    "name": "Angled Grip I"
+  },
+  {
+    "gameAssetId": "409593267",
+    "itemId": "deadline",
+    "name": "Deadline"
+  },
+  {
+    "gameAssetId": "412920729",
+    "itemId": "light_gun_parts_blueprint",
+    "name": "Light Gun Parts Blueprint"
+  },
+  {
+    "gameAssetId": "421801273",
+    "itemId": "arc_coolant",
+    "name": "ARC Coolant"
+  },
+  {
+    "gameAssetId": "423997188",
+    "itemId": "rubber_pad",
+    "name": "Rubber Pad"
+  },
+  {
+    "gameAssetId": "424739364",
+    "itemId": "polluted_air_filter",
+    "name": "Polluted Air Filter"
+  },
+  {
+    "gameAssetId": "426624588",
+    "itemId": "geiger_counter",
+    "name": "Geiger Counter"
+  },
+  {
+    "gameAssetId": "433079423",
+    "itemId": "looting_mk3_cautious",
+    "name": "Looting Mk. 3 (Cautious)"
+  },
+  {
+    "gameAssetId": "443470960",
+    "itemId": "remote_control",
+    "name": "Remote Control"
+  },
+  {
+    "gameAssetId": "458133629",
+    "itemId": "gas_mine",
+    "name": "Gas Mine"
+  },
+  {
+    "gameAssetId": "459407886",
+    "itemId": "extended_light_mag_iii_blueprint",
+    "name": "Extended Light Mag III Blueprint"
+  },
+  {
+    "gameAssetId": "464233263",
+    "itemId": "mod_components",
+    "name": "Mod Components"
+  },
+  {
+    "gameAssetId": "473499460",
+    "itemId": "industrial_charger",
+    "name": "Industrial Charger"
+  },
+  {
+    "gameAssetId": "483899737",
+    "itemId": "arpeggio_iv",
+    "name": "Arpeggio IV"
+  },
+  {
+    "gameAssetId": "517463307",
+    "itemId": "degraded_arc_rubber",
+    "name": "Degraded ARC Rubber"
+  },
+  {
+    "gameAssetId": "524538760",
+    "itemId": "cracked_bioscanner",
+    "name": "Cracked Bioscanner"
+  },
+  {
+    "gameAssetId": "537092188",
+    "itemId": "tagging_grenade",
+    "name": "Tagging Grenade"
+  },
+  {
+    "gameAssetId": "542524924",
+    "itemId": "padded_stock_blueprint",
+    "name": "Padded Stock Blueprint"
+  },
+  {
+    "gameAssetId": "549375413",
+    "itemId": "rattler_i",
+    "name": "Rattler I"
+  },
+  {
+    "gameAssetId": "561161842",
+    "itemId": "fruit_mix",
+    "name": "Fruit Mix"
+  },
+  {
+    "gameAssetId": "562831704",
+    "itemId": "launcher_ammo",
+    "name": "Launcher Ammo"
+  },
+  {
+    "gameAssetId": "583877119",
+    "itemId": "bandage",
+    "name": "Bandage"
+  },
+  {
+    "gameAssetId": "593277545",
+    "itemId": "rusted_shut_medical_kit",
+    "name": "Rusted Shut Medical Kit"
+  },
+  {
+    "gameAssetId": "599997416",
+    "itemId": "lemon",
+    "name": "Lemon"
+  },
+  {
+    "gameAssetId": "628543086",
+    "itemId": "industrial_magnet",
+    "name": "Industrial Magnet"
+  },
+  {
+    "gameAssetId": "637354931",
+    "itemId": "bobcat_i",
+    "name": "Bobcat I"
+  },
+  {
+    "gameAssetId": "646572303",
+    "itemId": "heavy_gun_parts_blueprint",
+    "name": "Heavy Gun Parts Blueprint"
+  },
+  {
+    "gameAssetId": "668021707",
+    "itemId": "kinetic_converter",
+    "name": "Kinetic Converter"
+  },
+  {
+    "gameAssetId": "697558734",
+    "itemId": "blaze_grenade",
+    "name": "Blaze Grenade"
+  },
+  {
+    "gameAssetId": "697800354",
+    "itemId": "spectrometer",
+    "name": "Spectrometer"
+  },
+  {
+    "gameAssetId": "701162118",
+    "itemId": "turbo_pump",
+    "name": "Turbo Pump"
+  },
+  {
+    "gameAssetId": "708897469",
+    "itemId": "bobcat_iii",
+    "name": "Bobcat III"
+  },
+  {
+    "gameAssetId": "717605649",
+    "itemId": "magnetic_accelerator",
+    "name": "Magnetic Accelerator"
+  },
+  {
+    "gameAssetId": "721769094",
+    "itemId": "prickly_pear",
+    "name": "Prickly Pear"
+  },
+  {
+    "gameAssetId": "728190402",
+    "itemId": "thermostat",
+    "name": "Thermostat"
+  },
+  {
+    "gameAssetId": "731997966",
+    "itemId": "signal_amplifier",
+    "name": "Signal Amplifier"
+  },
+  {
+    "gameAssetId": "737182316",
+    "itemId": "vulcano_iii",
+    "name": "Vulcano III"
+  },
+  {
+    "gameAssetId": "748926448",
+    "itemId": "fried_motherboard",
+    "name": "Fried Motherboard"
+  },
+  {
+    "gameAssetId": "753263571",
+    "itemId": "snap_blast_grenade",
+    "name": "Snap Blast Grenade"
+  },
+  {
+    "gameAssetId": "762060615",
+    "itemId": "bettina_blueprint",
+    "name": "Bettina Blueprint"
+  },
+  {
+    "gameAssetId": "762762439",
+    "itemId": "binoculars",
+    "name": "Binoculars"
+  },
+  {
+    "gameAssetId": "775298648",
+    "itemId": "stable_stock_i",
+    "name": "Stable Stock I"
+  },
+  {
+    "gameAssetId": "787027311",
+    "itemId": "heavy_fuze_grenade",
+    "name": "Heavy Fuze Grenade"
+  },
+  {
+    "gameAssetId": "793992947",
+    "itemId": "zipline",
+    "name": "Zipline"
+  },
+  {
+    "gameAssetId": "828947161",
+    "itemId": "plastic_parts",
+    "name": "Plastic Parts"
+  },
+  {
+    "gameAssetId": "849284640",
+    "itemId": "humidifier",
+    "name": "Humidifier"
+  },
+  {
+    "gameAssetId": "865158241",
+    "itemId": "magnetron",
+    "name": "Magnetron"
+  },
+  {
+    "gameAssetId": "866643291",
+    "itemId": "gas_grenade",
+    "name": "Gas Grenade"
+  },
+  {
+    "gameAssetId": "866985065",
+    "itemId": "rusted_bolts",
+    "name": "Rusted Bolts"
+  },
+  {
+    "gameAssetId": "877778759",
+    "itemId": "light_impact_grenade",
+    "name": "Light Impact Grenade"
+  },
+  {
+    "gameAssetId": "897279399",
+    "itemId": "rotary_encoder",
+    "name": "Rotary Encoder"
+  },
+  {
+    "gameAssetId": "915052893",
+    "itemId": "projector",
+    "name": "Projector"
+  },
+  {
+    "gameAssetId": "923438116",
+    "itemId": "adrenaline_shot",
+    "name": "Adrenaline Shot"
+  },
+  {
+    "gameAssetId": "937482096",
+    "itemId": "damaged_rocketeer_driver",
+    "name": "Damaged Rocketeer Driver"
+  },
+  {
+    "gameAssetId": "947411243",
+    "itemId": "looting_mk3_safekeeper",
+    "name": "Looting Mk. 3 (Safekeeper)"
+  },
+  {
+    "gameAssetId": "951468812",
+    "itemId": "sterilized_bandage",
+    "name": "Sterilized Bandage"
+  },
+  {
+    "gameAssetId": "966773769",
+    "itemId": "tactical_mk1",
+    "name": "Tactical Mk. 1"
+  },
+  {
+    "gameAssetId": "984123027",
+    "itemId": "smoke_grenade",
+    "name": "Smoke Grenade"
+  },
+  {
+    "gameAssetId": "986133328",
+    "itemId": "deflated_football",
+    "name": "Deflated Football"
+  },
+  {
+    "gameAssetId": "1004246812",
+    "itemId": "explosive_compound",
+    "name": "Explosive Compound"
+  },
+  {
+    "gameAssetId": "1004483718",
+    "itemId": "hornet_driver",
+    "name": "Hornet Driver"
+  },
+  {
+    "gameAssetId": "1013182792",
+    "itemId": "horizontal_grip",
+    "name": "Horizontal Grip"
+  },
+  {
+    "gameAssetId": "1039185396",
+    "itemId": "battery",
+    "name": "Battery"
+  },
+  {
+    "gameAssetId": "1051518749",
+    "itemId": "assorted_seeds",
+    "name": "Assorted Seeds"
+  },
+  {
+    "gameAssetId": "1101815928",
+    "itemId": "tactical_mk3_defensive",
+    "name": "Tactical Mk. 3 (Defensive)"
+  },
+  {
+    "gameAssetId": "1102110705",
+    "itemId": "complex_gun_parts_blueprint",
+    "name": "Complex Gun Parts Blueprint"
+  },
+  {
+    "gameAssetId": "1107192907",
+    "itemId": "arc_circuitry",
+    "name": "ARC Circuitry"
+  },
+  {
+    "gameAssetId": "1117029558",
+    "itemId": "remote_raider_flare",
+    "name": "Remote Raider Flare"
+  },
+  {
+    "gameAssetId": "1123609629",
+    "itemId": "vulcano_i",
+    "name": "Vulcano I"
+  },
+  {
+    "gameAssetId": "1125489375",
+    "itemId": "diving_goggles",
+    "name": "Diving Goggles"
+  },
+  {
+    "gameAssetId": "1143818817",
+    "itemId": "ferro_iii",
+    "name": "Ferro III"
+  },
+  {
+    "gameAssetId": "1146379657",
+    "itemId": "moss",
+    "name": "Moss"
+  },
+  {
+    "gameAssetId": "1151565517",
+    "itemId": "leaper_pulse_unit",
+    "name": "Leaper Pulse Unit"
+  },
+  {
+    "gameAssetId": "1219069540",
+    "itemId": "apricot",
+    "name": "Apricot"
+  },
+  {
+    "gameAssetId": "1224404530",
+    "itemId": "duct_tape",
+    "name": "Duct Tape"
+  },
+  {
+    "gameAssetId": "1237209984",
+    "itemId": "medium_shield",
+    "name": "Medium Shield"
+  },
+  {
+    "gameAssetId": "1261688505",
+    "itemId": "shaker",
+    "name": "Shaker"
+  },
+  {
+    "gameAssetId": "1266019904",
+    "itemId": "bastion_cell",
+    "name": "Bastion Cell"
+  },
+  {
+    "gameAssetId": "1282834879",
+    "itemId": "venator_blueprint",
+    "name": "Venator Blueprint"
+  },
+  {
+    "gameAssetId": "1287783108",
+    "itemId": "stable_stock_ii",
+    "name": "Stable Stock II"
+  },
+  {
+    "gameAssetId": "1288425767",
+    "itemId": "stable_stock_ii_blueprint",
+    "name": "Stable Stock II Blueprint"
+  },
+  {
+    "gameAssetId": "1299206296",
+    "itemId": "blaze_grenade_trap",
+    "name": "Blaze Grenade Trap"
+  },
+  {
+    "gameAssetId": "1305834322",
+    "itemId": "portable_tv",
+    "name": "Portable TV"
+  },
+  {
+    "gameAssetId": "1316261334",
+    "itemId": "torrente_i",
+    "name": "Torrente I"
+  },
+  {
+    "gameAssetId": "1332241414",
+    "itemId": "antiseptic",
+    "name": "Antiseptic"
+  },
+  {
+    "gameAssetId": "1343472835",
+    "itemId": "hullcracker_iv",
+    "name": "Hullcracker IV"
+  },
+  {
+    "gameAssetId": "1349673826",
+    "itemId": "kettle_iv",
+    "name": "Kettle IV"
+  },
+  {
+    "gameAssetId": "1352103757",
+    "itemId": "rocketeer_driver",
+    "name": "Rocketeer Driver"
+  },
+  {
+    "gameAssetId": "1363078343",
+    "itemId": "muzzle_brake_ii",
+    "name": "Muzzle Brake II"
+  },
+  {
+    "gameAssetId": "1364313874",
+    "itemId": "laboratory_reagents",
+    "name": "Laboratory Reagents"
+  },
+  {
+    "gameAssetId": "1369416424",
+    "itemId": "free_loadout_augment",
+    "name": "Free Loadout Augment"
+  },
+  {
+    "gameAssetId": "1370600620",
+    "itemId": "hairpin_iii",
+    "name": "Hairpin III"
+  },
+  {
+    "gameAssetId": "1370841463",
+    "itemId": "arc_alloy",
+    "name": "ARC Alloy"
+  },
+  {
+    "gameAssetId": "1380531218",
+    "itemId": "trigger_nade_blueprint",
+    "name": "Trigger Nade Blueprint"
+  },
+  {
+    "gameAssetId": "1393527984",
+    "itemId": "water_filter",
+    "name": "Water Filter"
+  },
+  {
+    "gameAssetId": "1402108763",
+    "itemId": "silencer_i_blueprint",
+    "name": "Silencer I Blueprint"
+  },
+  {
+    "gameAssetId": "1407799927",
+    "itemId": "burletta_iv",
+    "name": "Burletta IV"
+  },
+  {
+    "gameAssetId": "1426983925",
+    "itemId": "shotgun_choke_iii_blueprint",
+    "name": "Shotgun Choke III Blueprint"
+  },
+  {
+    "gameAssetId": "1433303640",
+    "itemId": "tempest_i",
+    "name": "Tempest I"
+  },
+  {
+    "gameAssetId": "1443595066",
+    "itemId": "renegade_i",
+    "name": "Renegade I"
+  },
+  {
+    "gameAssetId": "1502122136",
+    "itemId": "power_cable",
+    "name": "Power Cable"
+  },
+  {
+    "gameAssetId": "1505999062",
+    "itemId": "light_shield",
+    "name": "Light Shield"
+  },
+  {
+    "gameAssetId": "1516184045",
+    "itemId": "stitcher_iv",
+    "name": "Stitcher IV"
+  },
+  {
+    "gameAssetId": "1533374440",
+    "itemId": "arc_thermo_lining",
+    "name": "ARC Thermo Lining"
+  },
+  {
+    "gameAssetId": "1545024611",
+    "itemId": "fossilized_lightning",
+    "name": "Fossilized Lightning"
+  },
+  {
+    "gameAssetId": "1549911570",
+    "itemId": "stitcher_ii",
+    "name": "Stitcher II"
+  },
+  {
+    "gameAssetId": "1552920566",
+    "itemId": "voltage_converter",
+    "name": "Voltage Converter"
+  },
+  {
+    "gameAssetId": "1558483939",
+    "itemId": "vertical_grip_ii_blueprint",
+    "name": "Vertical Grip II Blueprint"
+  },
+  {
+    "gameAssetId": "1607597452",
+    "itemId": "light_bulb",
+    "name": "Light Bulb"
+  },
+  {
+    "gameAssetId": "1608603820",
+    "itemId": "complex_gun_parts",
+    "name": "Complex Gun Parts"
+  },
+  {
+    "gameAssetId": "1619184001",
+    "itemId": "energy_clip",
+    "name": "Energy Clip"
+  },
+  {
+    "gameAssetId": "1625205858",
+    "itemId": "crude_explosives",
+    "name": "Crude Explosives"
+  },
+  {
+    "gameAssetId": "1629645384",
+    "itemId": "tempest_iv",
+    "name": "Tempest IV"
+  },
+  {
+    "gameAssetId": "1650182822",
+    "itemId": "renegade_iv",
+    "name": "Renegade IV"
+  },
+  {
+    "gameAssetId": "1670090314",
+    "itemId": "extended_medium_mag_iii",
+    "name": "Extended Medium Mag III"
+  },
+  {
+    "gameAssetId": "1671732587",
+    "itemId": "barricade_kit",
+    "name": "Barricade Kit"
+  },
+  {
+    "gameAssetId": "1680690244",
+    "itemId": "looting_mk1",
+    "name": "Looting Mk. 1"
+  },
+  {
+    "gameAssetId": "1682428740",
+    "itemId": "padded_stock",
+    "name": "Padded Stock"
+  },
+  {
+    "gameAssetId": "1694582967",
+    "itemId": "cooling_fan",
+    "name": "Cooling Fan"
+  },
+  {
+    "gameAssetId": "1729534311",
+    "itemId": "impure_arc_coolant",
+    "name": "Impure ARC Coolant"
+  },
+  {
+    "gameAssetId": "1741060583",
+    "itemId": "oil",
+    "name": "Oil"
+  },
+  {
+    "gameAssetId": "1742317181",
+    "itemId": "household_cleaner",
+    "name": "Household Cleaner"
+  },
+  {
+    "gameAssetId": "1755646795",
+    "itemId": "dam_staff_room_key",
+    "name": "Dam Staff Room Key"
+  },
+  {
+    "gameAssetId": "1766749662",
+    "itemId": "rattler_ii",
+    "name": "Rattler II"
+  },
+  {
+    "gameAssetId": "1768889427",
+    "itemId": "bobcat_ii",
+    "name": "Bobcat II"
+  },
+  {
+    "gameAssetId": "1793382961",
+    "itemId": "cat_bed",
+    "name": "Cat Bed"
+  },
+  {
+    "gameAssetId": "1795670982",
+    "itemId": "vita_spray",
+    "name": "Vita Spray"
+  },
+  {
+    "gameAssetId": "1827408349",
+    "itemId": "herbal_bandage",
+    "name": "Herbal Bandage"
+  },
+  {
+    "gameAssetId": "1858816158",
+    "itemId": "venator_i",
+    "name": "Venator I"
+  },
+  {
+    "gameAssetId": "1920326798",
+    "itemId": "hairpin_iv",
+    "name": "Hairpin IV"
+  },
+  {
+    "gameAssetId": "1921518029",
+    "itemId": "silencer_ii",
+    "name": "Silencer II"
+  },
+  {
+    "gameAssetId": "1928875024",
+    "itemId": "cooling_coil",
+    "name": "Cooling Coil"
+  },
+  {
+    "gameAssetId": "1934437826",
+    "itemId": "extended_barrel_blueprint",
+    "name": "Extended Barrel Blueprint"
+  },
+  {
+    "gameAssetId": "1946218435",
+    "itemId": "spaceport_trench_tower_key",
+    "name": "Spaceport Trench Tower Key"
+  },
+  {
+    "gameAssetId": "1951118983",
+    "itemId": "anvil_i",
+    "name": "Anvil I"
+  },
+  {
+    "gameAssetId": "1959573223",
+    "itemId": "mechanical_components",
+    "name": "Mechanical Components"
+  },
+  {
+    "gameAssetId": "1992585880",
+    "itemId": "hairpin_ii",
+    "name": "Hairpin II"
+  },
+  {
+    "gameAssetId": "2011274164",
+    "itemId": "radio",
+    "name": "Radio"
+  },
+  {
+    "gameAssetId": "2022140331",
+    "itemId": "damaged_heat_sink",
+    "name": "Damaged Heat Sink"
+  },
+  {
+    "gameAssetId": "2023489275",
+    "itemId": "burletta_blueprint",
+    "name": "Burletta Blueprint"
+  },
+  {
+    "gameAssetId": "2028871781",
+    "itemId": "noisemaker",
+    "name": "Noisemaker"
+  },
+  {
+    "gameAssetId": "2041238290",
+    "itemId": "vita_shot",
+    "name": "Vita Shot"
+  },
+  {
+    "gameAssetId": "2058762606",
+    "itemId": "photoelectric_cloak",
+    "name": "Photoelectric Cloak"
+  },
+  {
+    "gameAssetId": "2060851155",
+    "itemId": "equalizer_blueprint",
+    "name": "Equalizer Blueprint"
+  },
+  {
+    "gameAssetId": "2096837185",
+    "itemId": "industrial_battery",
+    "name": "Industrial Battery"
+  },
+  {
+    "gameAssetId": "2121538320",
+    "itemId": "shrapnel_grenade",
+    "name": "Shrapnel Grenade"
+  },
+  {
+    "gameAssetId": "2129769166",
+    "itemId": "blue_gate_confiscation_room_key",
+    "name": "Blue Gate Confiscation Room Key"
+  },
+  {
+    "gameAssetId": "2132104320",
+    "itemId": "snap_hook_blueprint",
+    "name": "Snap Hook Blueprint"
+  },
+  {
+    "gameAssetId": "2133595346",
+    "itemId": "blue_gate_communication_tower_key",
+    "name": "Blue Gate Communication Tower Key"
+  },
+  {
+    "gameAssetId": "-770265029",
+    "itemId": "advanced_electrical_components",
+    "name": "Advanced Electrical Components"
+  },
+  {
+    "gameAssetId": "-127927282",
+    "itemId": "agave",
+    "name": "Agave"
+  },
+  {
+    "gameAssetId": "-428713325",
+    "itemId": "alarm_clock",
+    "name": "Alarm Clock"
+  },
+  {
+    "gameAssetId": "-709850700",
+    "itemId": "angled_grip_ii_blueprint",
+    "name": "Angled Grip II Blueprint"
+  },
+  {
+    "gameAssetId": "-2113309921",
+    "itemId": "angled_grip_iii_blueprint",
+    "name": "Angled Grip III Blueprint"
+  },
+  {
+    "gameAssetId": "-348089449",
+    "itemId": "anvil_blueprint",
+    "name": "Anvil Blueprint"
+  },
+  {
+    "gameAssetId": "-1974459892",
+    "itemId": "anvil_ii",
+    "name": "Anvil II"
+  },
+  {
+    "gameAssetId": "-39940538",
+    "itemId": "anvil_iii",
+    "name": "Anvil III"
+  },
+  {
+    "gameAssetId": "-163859490",
+    "itemId": "anvil_iv",
+    "name": "Anvil IV"
+  },
+  {
+    "gameAssetId": "-2130292638",
+    "itemId": "anvil_splitter",
+    "name": "Anvil Splitter"
+  },
+  {
+    "gameAssetId": "-692327830",
+    "itemId": "aphelion_blueprint",
+    "name": "Aphelion Rifle Blueprint"
+  },
+  {
+    "gameAssetId": "-994234794",
+    "itemId": "arc_flex_rubber",
+    "name": "ARC Flex Rubber"
+  },
+  {
+    "gameAssetId": "-1068126131",
+    "itemId": "arc_performance_steel",
+    "name": "ARC Performance Steel"
+  },
+  {
+    "gameAssetId": "-1994200966",
+    "itemId": "arc_powercell",
+    "name": "ARC Powercell"
+  },
+  {
+    "gameAssetId": "-1174500500",
+    "itemId": "arpeggio_i",
+    "name": "Arpeggio I"
+  },
+  {
+    "gameAssetId": "-75288973",
+    "itemId": "barricade_kit_blueprint",
+    "name": "Barricade Kit Blueprint"
+  },
+  {
+    "gameAssetId": "-1236612582",
+    "itemId": "bettina_i",
+    "name": "Bettina I"
+  },
+  {
+    "gameAssetId": "-1260920556",
+    "itemId": "bobcat_blueprint",
+    "name": "Bobcat Blueprint"
+  },
+  {
+    "gameAssetId": "-1631078332",
+    "itemId": "bobcat_iv",
+    "name": "Bobcat IV"
+  },
+  {
+    "gameAssetId": "-1322084093",
+    "itemId": "broken_flashlight",
+    "name": "Broken Flashlight"
+  },
+  {
+    "gameAssetId": "-1915974299",
+    "itemId": "broken_handheld_radio",
+    "name": "Broken Handheld Radio"
+  },
+  {
+    "gameAssetId": "-1921925959",
+    "itemId": "burletta_i",
+    "name": "Burletta I"
+  },
+  {
+    "gameAssetId": "-2054621793",
+    "itemId": "burletta_ii",
+    "name": "Burletta II"
+  },
+  {
+    "gameAssetId": "-1599426473",
+    "itemId": "candle_holder",
+    "name": "Candle Holder"
+  },
+  {
+    "gameAssetId": "-668588724",
+    "itemId": "canister",
+    "name": "Canister"
+  },
+  {
+    "gameAssetId": "-1565478080",
+    "itemId": "chemicals",
+    "name": "Chemicals"
+  },
+  {
+    "gameAssetId": "-1489261627",
+    "itemId": "combat_mk2",
+    "name": "Combat Mk. 2"
+  },
+  {
+    "gameAssetId": "-468025815",
+    "itemId": "combat_mk3_aggressive",
+    "name": "Combat Mk. 3 (Aggressive)"
+  },
+  {
+    "gameAssetId": "-1068447725",
+    "itemId": "combat_mk3_flanking",
+    "name": "Combat Mk. 3 (Flanking)"
+  },
+  {
+    "gameAssetId": "-1783980284",
+    "itemId": "compensator_ii_blueprint",
+    "name": "Compensator II Blueprint"
+  },
+  {
+    "gameAssetId": "-208510453",
+    "itemId": "compensator_iii_blueprint",
+    "name": "Compensator III Blueprint"
+  },
+  {
+    "gameAssetId": "-2089523165",
+    "itemId": "coolant",
+    "name": "Coolant"
+  },
+  {
+    "gameAssetId": "-384403080",
+    "itemId": "crumpled_plastic_bottle",
+    "name": "Crumpled Plastic Bottle"
+  },
+  {
+    "gameAssetId": "-1084994886",
+    "itemId": "damaged_arc_motion_core",
+    "name": "Damaged ARC Motion Core"
+  },
+  {
+    "gameAssetId": "-320978515",
+    "itemId": "damaged_hornet_driver",
+    "name": "Damaged Hornet Driver"
+  },
+  {
+    "gameAssetId": "-1403641624",
+    "itemId": "damaged_tick_pod",
+    "name": "Damaged Tick Pod"
+  },
+  {
+    "gameAssetId": "-969924004",
+    "itemId": "damaged_wasp_driver",
+    "name": "Damaged Wasp Driver"
+  },
+  {
+    "gameAssetId": "-386705321",
+    "itemId": "deadline_blueprint",
+    "name": "Deadline Blueprint"
+  },
+  {
+    "gameAssetId": "-1234113868",
+    "itemId": "defibrillator_blueprint",
+    "name": "Defibrillator Blueprint"
+  },
+  {
+    "gameAssetId": "-1726424272",
+    "itemId": "dog_collar",
+    "name": "Dog Collar"
+  },
+  {
+    "gameAssetId": "-699310837",
+    "itemId": "door_blocker",
+    "name": "Door Blocker"
+  },
+  {
+    "gameAssetId": "-2113221072",
+    "itemId": "dried_out_arc_resin",
+    "name": "Dried-Out ARC Resin"
+  },
+  {
+    "gameAssetId": "-632888435",
+    "itemId": "expired_respirator",
+    "name": "Expired Respirator"
+  },
+  {
+    "gameAssetId": "-1666910412",
+    "itemId": "extended_light_mag_ii",
+    "name": "Extended Light Mag II"
+  },
+  {
+    "gameAssetId": "-1202416011",
+    "itemId": "extended_medium_mag_ii_blueprint",
+    "name": "Extended Medium Mag II Blueprint"
+  },
+  {
+    "gameAssetId": "-814658911",
+    "itemId": "extended_shotgun_mag_i",
+    "name": "Extended Shotgun Mag I"
+  },
+  {
+    "gameAssetId": "-255420364",
+    "itemId": "extended_shotgun_mag_ii_blueprint",
+    "name": "Extended Shotgun Mag II Blueprint"
+  },
+  {
+    "gameAssetId": "-2118305709",
+    "itemId": "extended_shotgun_mag_iii_blueprint",
+    "name": "Extended Shotgun Mag III Blueprint"
+  },
+  {
+    "gameAssetId": "-1580114534",
+    "itemId": "fabric",
+    "name": "Fabric"
+  },
+  {
+    "gameAssetId": "-1300343709",
+    "itemId": "ferro_i",
+    "name": "Ferro I"
+  },
+  {
+    "gameAssetId": "-1347969810",
+    "itemId": "ferro_ii",
+    "name": "Ferro II"
+  },
+  {
+    "gameAssetId": "-14963185",
+    "itemId": "ferro_iv",
+    "name": "Ferro IV"
+  },
+  {
+    "gameAssetId": "-894995539",
+    "itemId": "fertilizer",
+    "name": "Fertilizer"
+  },
+  {
+    "gameAssetId": "-823752633",
+    "itemId": "firecracker",
+    "name": "Firecracker"
+  },
+  {
+    "gameAssetId": "-1616698820",
+    "itemId": "fireworks_box",
+    "name": "Fireworks Box"
+  },
+  {
+    "gameAssetId": "-88669682",
+    "itemId": "flame_spray",
+    "name": "Flame Spray"
+  },
+  {
+    "gameAssetId": "-1423582397",
+    "itemId": "frying_pan",
+    "name": "Frying Pan"
+  },
+  {
+    "gameAssetId": "-109120658",
+    "itemId": "garlic_press",
+    "name": "Garlic Press"
+  },
+  {
+    "gameAssetId": "-1119818372",
+    "itemId": "hairpin_i",
+    "name": "Hairpin I"
+  },
+  {
+    "gameAssetId": "-1395484519",
+    "itemId": "headphones",
+    "name": "Headphones"
+  },
+  {
+    "gameAssetId": "-1402742438",
+    "itemId": "heavy_ammo",
+    "name": "Heavy Ammo"
+  },
+  {
+    "gameAssetId": "-459566791",
+    "itemId": "hullcracker_blueprint",
+    "name": "Hullcracker Blueprint"
+  },
+  {
+    "gameAssetId": "-1868876009",
+    "itemId": "hullcracker_i",
+    "name": "Hullcracker I"
+  },
+  {
+    "gameAssetId": "-1858367047",
+    "itemId": "hullcracker_ii",
+    "name": "Hullcracker II"
+  },
+  {
+    "gameAssetId": "-1390078682",
+    "itemId": "hullcracker_iii",
+    "name": "Hullcracker III"
+  },
+  {
+    "gameAssetId": "-44588806",
+    "itemId": "ice_cream_scooper",
+    "name": "Ice Cream Scooper"
+  },
+  {
+    "gameAssetId": "-1123417641",
+    "itemId": "il_toro_i",
+    "name": "Il Toro I"
+  },
+  {
+    "gameAssetId": "-643273323",
+    "itemId": "jolt_mine",
+    "name": "Jolt Mine"
+  },
+  {
+    "gameAssetId": "-624801890",
+    "itemId": "kettle_ii",
+    "name": "Kettle II"
+  },
+  {
+    "gameAssetId": "-1374119783",
+    "itemId": "kettle_iii",
+    "name": "Kettle III"
+  },
+  {
+    "gameAssetId": "-1875547390",
+    "itemId": "light_ammo",
+    "name": "Light Ammo"
+  },
+  {
+    "gameAssetId": "-1156830089",
+    "itemId": "looting_mk2",
+    "name": "Looting Mk. 2"
+  },
+  {
+    "gameAssetId": "-863904193",
+    "itemId": "magnet",
+    "name": "Magnet"
+  },
+  {
+    "gameAssetId": "-1511047275",
+    "itemId": "medium_gun_parts_blueprint",
+    "name": "Medium Gun Parts Blueprint"
+  },
+  {
+    "gameAssetId": "-959674358",
+    "itemId": "metal_brackets",
+    "name": "Metal Brackets"
+  },
+  {
+    "gameAssetId": "-1437131902",
+    "itemId": "metal_parts",
+    "name": "Metal Parts"
+  },
+  {
+    "gameAssetId": "-157659864",
+    "itemId": "microscope",
+    "name": "Microscope"
+  },
+  {
+    "gameAssetId": "-1592298341",
+    "itemId": "mini_centrifuge",
+    "name": "Mini Centrifuge"
+  },
+  {
+    "gameAssetId": "-734190498",
+    "itemId": "motor",
+    "name": "Motor"
+  },
+  {
+    "gameAssetId": "-1243897466",
+    "itemId": "number_plate",
+    "name": "Number Plate"
+  },
+  {
+    "gameAssetId": "-944742704",
+    "itemId": "olives",
+    "name": "Olives"
+  },
+  {
+    "gameAssetId": "-320739876",
+    "itemId": "osprey_blueprint",
+    "name": "Osprey Blueprint"
+  },
+  {
+    "gameAssetId": "-1435588212",
+    "itemId": "osprey_i",
+    "name": "Osprey I"
+  },
+  {
+    "gameAssetId": "-77932300",
+    "itemId": "power_bank",
+    "name": "Power Bank"
+  },
+  {
+    "gameAssetId": "-100594742",
+    "itemId": "pulse_mine",
+    "name": "Pulse Mine"
+  },
+  {
+    "gameAssetId": "-816199752",
+    "itemId": "radio_relay",
+    "name": "Radio Relay"
+  },
+  {
+    "gameAssetId": "-902952774",
+    "itemId": "raider_hatch_key",
+    "name": "Raider Hatch Key"
+  },
+  {
+    "gameAssetId": "-595215449",
+    "itemId": "renegade_ii",
+    "name": "Renegade II"
+  },
+  {
+    "gameAssetId": "-1520827186",
+    "itemId": "renegade_iii",
+    "name": "Renegade III"
+  },
+  {
+    "gameAssetId": "-1575948275",
+    "itemId": "ripped_safety_vest",
+    "name": "Ripped Safety Vest"
+  },
+  {
+    "gameAssetId": "-1503671306",
+    "itemId": "rocket_thruster",
+    "name": "Rocket Thruster"
+  },
+  {
+    "gameAssetId": "-1066783360",
+    "itemId": "roots",
+    "name": "Roots"
+  },
+  {
+    "gameAssetId": "-486305029",
+    "itemId": "ruined_augment",
+    "name": "Ruined Augment"
+  },
+  {
+    "gameAssetId": "-1035193710",
+    "itemId": "ruined_tactical_vest",
+    "name": "Ruined Tactical Vest"
+  },
+  {
+    "gameAssetId": "-741882707",
+    "itemId": "rusted_tools",
+    "name": "Rusted Tools"
+  },
+  {
+    "gameAssetId": "-174734319",
+    "itemId": "rusty_arc_steel",
+    "name": "Rusty ARC Steel"
+  },
+  {
+    "gameAssetId": "-1997648523",
+    "itemId": "sample_cleaner",
+    "name": "Sample Cleaner"
+  },
+  {
+    "gameAssetId": "-922322200",
+    "itemId": "seeker_grenade",
+    "name": "Seeker Grenade"
+  },
+  {
+    "gameAssetId": "-17247411",
+    "itemId": "sensors",
+    "name": "Sensors"
+  },
+  {
+    "gameAssetId": "-1873522360",
+    "itemId": "shotgun_ammo",
+    "name": "Shotgun Ammo"
+  },
+  {
+    "gameAssetId": "-365598365",
+    "itemId": "shotgun_choke_ii_blueprint",
+    "name": "Shotgun Choke II Blueprint"
+  },
+  {
+    "gameAssetId": "-961903907",
+    "itemId": "shotgun_silencer_blueprint",
+    "name": "Shotgun Silencer Blueprint"
+  },
+  {
+    "gameAssetId": "-2035840261",
+    "itemId": "showstopper",
+    "name": "Showstopper"
+  },
+  {
+    "gameAssetId": "-2067768957",
+    "itemId": "silencer_ii_blueprint",
+    "name": "Silencer II Blueprint"
+  },
+  {
+    "gameAssetId": "-621597590",
+    "itemId": "silencer_iii",
+    "name": "Silencer III"
+  },
+  {
+    "gameAssetId": "-574262619",
+    "itemId": "simple_gun_parts",
+    "name": "Simple Gun Parts"
+  },
+  {
+    "gameAssetId": "-943023152",
+    "itemId": "snitch_scanner",
+    "name": "Snitch Scanner"
+  },
+  {
+    "gameAssetId": "-240163355",
+    "itemId": "spectrum_analyzer",
+    "name": "Spectrum Analyzer"
+  },
+  {
+    "gameAssetId": "-3791881",
+    "itemId": "spring_cushion",
+    "name": "Spring Cushion"
+  },
+  {
+    "gameAssetId": "-692617228",
+    "itemId": "stable_stock_iii_blueprint",
+    "name": "Stable Stock III Blueprint"
+  },
+  {
+    "gameAssetId": "-302696283",
+    "itemId": "stitcher_i",
+    "name": "Stitcher I"
+  },
+  {
+    "gameAssetId": "-2007835076",
+    "itemId": "stitcher_iii",
+    "name": "Stitcher III"
+  },
+  {
+    "gameAssetId": "-380745354",
+    "itemId": "surge_shield_recharger",
+    "name": "Surge Shield Recharger"
+  },
+  {
+    "gameAssetId": "-503792599",
+    "itemId": "synthesized_fuel",
+    "name": "Synthesized Fuel"
+  },
+  {
+    "gameAssetId": "-647887968",
+    "itemId": "syringe",
+    "name": "Syringe"
+  },
+  {
+    "gameAssetId": "-1240487285",
+    "itemId": "tactical_mk2",
+    "name": "Tactical Mk. 2"
+  },
+  {
+    "gameAssetId": "-1561038837",
+    "itemId": "tactical_mk3_healing",
+    "name": "Tactical Mk. 3 (Healing)"
+  },
+  {
+    "gameAssetId": "-1328695953",
+    "itemId": "tactical_mk3_revival",
+    "name": "Tactical Mk. 3 (Revival)"
+  },
+  {
+    "gameAssetId": "-2124548786",
+    "itemId": "tattered_arc_lining",
+    "name": "Tattered Arc Lining"
+  },
+  {
+    "gameAssetId": "-643480722",
+    "itemId": "tattered_clothes",
+    "name": "Tattered Clothes"
+  },
+  {
+    "gameAssetId": "-25914444",
+    "itemId": "telemetry_transceiver",
+    "name": "Telemetry Transceiver"
+  },
+  {
+    "gameAssetId": "-673170998",
+    "itemId": "tempest_blueprint",
+    "name": "Tempest Blueprint"
+  },
+  {
+    "gameAssetId": "-1259129540",
+    "itemId": "tempest_ii",
+    "name": "Tempest II"
+  },
+  {
+    "gameAssetId": "-672186450",
+    "itemId": "tempest_iii",
+    "name": "Tempest III"
+  },
+  {
+    "gameAssetId": "-505000565",
+    "itemId": "tick_pod",
+    "name": "Tick Pod"
+  },
+  {
+    "gameAssetId": "-1789285630",
+    "itemId": "toaster",
+    "name": "Toaster"
+  },
+  {
+    "gameAssetId": "-1298184560",
+    "itemId": "torn_blanket",
+    "name": "Torn Blanket"
+  },
+  {
+    "gameAssetId": "-543601975",
+    "itemId": "torrente_blueprint",
+    "name": "Torrente Blueprint"
+  },
+  {
+    "gameAssetId": "-153748567",
+    "itemId": "trailblazer",
+    "name": "Trailblazer Grenade"
+  },
+  {
+    "gameAssetId": "-1311488653",
+    "itemId": "unusable_weapon",
+    "name": "Unusable Weapon"
+  },
+  {
+    "gameAssetId": "-656772288",
+    "itemId": "vertical_grip_iii_blueprint",
+    "name": "Vertical Grip III Blueprint"
+  },
+  {
+    "gameAssetId": "-131543983",
+    "itemId": "vulcano_ii",
+    "name": "Vulcano II"
+  },
+  {
+    "gameAssetId": "-630279513",
+    "itemId": "vulcano_iv",
+    "name": "Vulcano IV"
+  },
+  {
+    "gameAssetId": "-1712774896",
+    "itemId": "wasp_driver",
+    "name": "Wasp Driver"
+  },
+  {
+    "gameAssetId": "-1637094497",
+    "itemId": "water_pump",
+    "name": "Water Pump"
+  },
+  {
+    "gameAssetId": "-633851525",
+    "itemId": "wires",
+    "name": "Wires"
+  },
+  {
+    "gameAssetId": "-1074160440",
+    "itemId": "wolfpack",
+    "name": "Wolfpack"
+  },
+  {
+    "gameAssetId": "-2048050889",
+    "itemId": "rubber_parts",
+    "name": "Rubber Parts"
+  },
+  {
+    "gameAssetId": "-1447314005",
+    "itemId": "arc_powercell",
+    "name": "ARC Powercell"
+  },
+  {
+    "gameAssetId": "-34507507",
+    "itemId": "shield_recharger",
+    "name": "Shield Recharger"
+  },
+  {
+    "gameAssetId": "-1688501435",
+    "itemId": "defibrillator",
+    "name": "Defibrillator"
+  },
+  {
+    "gameAssetId": "-319966965",
+    "itemId": "shotgun_silencer",
+    "name": "Shotgun Silencer"
+  },
+  {
+    "gameAssetId": "-1682300422",
+    "itemId": "shotgun_choke_ii",
+    "name": "Shotgun Choke II"
+  },
+  {
+    "gameAssetId": "-373455872",
+    "itemId": "candleberries",
+    "name": "Candleberries"
+  },
+  {
+    "gameAssetId": "-631032368",
+    "itemId": "great_mullein",
+    "name": "Great Mullein"
+  },
+  {
+    "gameAssetId": "-1442608039",
+    "itemId": "film_reel",
+    "name": "Film Reel"
+  },
+  {
+    "gameAssetId": "-1845464234",
+    "itemId": "stella_montis_archives_key",
+    "name": "Stella Montis Archives Key"
+  },
+  {
+    "gameAssetId": "-980968159",
+    "itemId": "rattler_iii",
+    "name": "Rattler III"
+  },
+  {
+    "gameAssetId": "-1517601046",
+    "itemId": "steel_spring",
+    "name": "Steel Spring"
+  },
+  {
+    "gameAssetId": "-923201933",
+    "itemId": "electrical_components",
+    "name": "Electrical Components"
+  },
+  {
+    "gameAssetId": "-1426003438",
+    "itemId": "fireball_burner",
+    "name": "Fireball Burner"
+  },
+  {
+    "gameAssetId": "-1903407680",
+    "itemId": "heavy_gun_parts",
+    "name": "Heavy Gun Parts"
+  },
+  {
+    "gameAssetId": "-926389249",
+    "itemId": "advanced_mechanical_components",
+    "name": "Advanced Mechanical Components"
+  },
+  {
+    "gameAssetId": "-483653282",
+    "itemId": "fine_wristwatch",
+    "name": "Fine Wristwatch"
+  },
+  {
+    "gameAssetId": "-1074924798",
+    "itemId": "vertical_grip_iii",
+    "name": "Vertical Grip III"
+  },
+  {
+    "gameAssetId": "-1034612605",
+    "itemId": "music_box",
+    "name": "Music Box"
+  },
+  {
+    "gameAssetId": "-1407135982",
+    "itemId": "shredder_gyro",
+    "name": "Shredder Gyro"
+  },
+  {
+    "gameAssetId": "-855264654",
+    "itemId": "faded_photograph",
+    "name": "Faded Photograph"
+  },
+  {
+    "gameAssetId": "-51232541",
+    "itemId": "coffee_pot",
+    "name": "Coffee Pot"
+  },
+  {
+    "gameAssetId": "-1888542545",
+    "itemId": "compensator_i",
+    "name": "Compensator I"
+  },
+  {
+    "gameAssetId": "-566520716",
+    "itemId": "extended_medium_mag_i",
+    "name": "Extended Medium Mag I"
+  },
+  {
+    "gameAssetId": "-1404148784",
+    "itemId": "vertical_grip_i",
+    "name": "Vertical Grip I"
+  },
+  {
+    "gameAssetId": "-283948665",
+    "itemId": "extended_light_mag_i",
+    "name": "Extended Light Mag I"
+  },
+  {
+    "gameAssetId": "-450689218",
+    "itemId": "muzzle_brake_i",
+    "name": "Muzzle Brake I"
+  },
+  {
+    "gameAssetId": "-1570319542",
+    "itemId": "shotgun_choke_i",
+    "name": "Shotgun Choke I"
+  },
+  {
+    "gameAssetId": "-93272200",
+    "itemId": "trailblazer_blueprint",
+    "name": "Trailblazer Grenade Blueprint"
+  },
+  {
+    "gameAssetId": "-182223087",
+    "itemId": "lightweight_stock_blueprint",
+    "name": "Lightweight Stock Blueprint"
+  },
+  {
+    "gameAssetId": "-828855343",
+    "itemId": "showstopper_blueprint",
+    "name": "Showstopper Blueprint"
+  },
+  {
+    "gameAssetId": "-1233893659",
+    "itemId": "jupiter_blueprint",
+    "name": "Jupiter Blueprint"
+  },
+  {
+    "gameAssetId": "-1764906318",
+    "itemId": "buried_city_residential_master_key",
+    "name": "Buried City Residential Master Key"
+  },
+  {
+    "gameAssetId": "-1920319269",
+    "itemId": "buried_city_jkv_employee_access_card",
+    "name": "Buried City JKV Employee Access Card"
+  },
+  {
+    "gameAssetId": "-1275287419",
+    "itemId": "buried_city_town_hall_key",
+    "name": "Buried City Town Hall Key"
+  },
+  {
+    "gameAssetId": "-392493295",
+    "itemId": "dam_surveillance_key",
+    "name": "Dam Surveillance Key"
+  },
+  {
+    "gameAssetId": "-123856886",
+    "itemId": "stable_stock_iii",
+    "name": "Stable Stock III"
+  },
+  {
+    "gameAssetId": "-1385889770",
+    "itemId": "light_gun_parts",
+    "name": "Light Gun Parts"
+  },
+  {
+    "gameAssetId": "-1072384644",
+    "itemId": "compensator_ii",
+    "name": "Compensator II"
+  },
+  {
+    "gameAssetId": "-1622446317",
+    "itemId": "speaker_component",
+    "name": "Speaker Component"
+  },
+  {
+    "gameAssetId": "-1441495265",
+    "itemId": "equalizer",
+    "name": "Equalizer"
+  },
+  {
+    "gameAssetId": "-409081322",
+    "itemId": "silencer_i",
+    "name": "Silencer I"
+  },
+  {
+    "gameAssetId": "-1177716644",
+    "itemId": "exodus_modules",
+    "name": "Exodus Modules"
+  },
+  {
+    "gameAssetId": "-1681246336",
+    "itemId": "angled_grip_ii",
+    "name": "Angled Grip II"
+  },
+  {
+    "gameAssetId": "-2095596285",
+    "itemId": "lightweight_stock",
+    "name": "Lightweight Stock"
+  },
+  {
+    "gameAssetId": "-1131982378",
+    "itemId": "angled_grip_iii",
+    "name": "Angled Grip III"
+  },
+  {
+    "gameAssetId": "-537173438",
+    "itemId": "jupiter",
+    "name": "Jupiter"
+  },
+  {
+    "gameAssetId": "-295158634",
+    "itemId": "vertical_grip_ii",
+    "name": "Vertical Grip II"
+  },
+  {
+    "gameAssetId": "-900569094",
+    "itemId": "arc_motion_core",
+    "name": "ARC Motion Core"
+  },
+  {
+    "gameAssetId": "-486727826",
+    "itemId": "lure_grenade",
+    "name": "Lure Grenade"
+  },
+  {
+    "gameAssetId": "-1963108876",
+    "itemId": "snap_hook",
+    "name": "Snap Hook"
+  },
+  {
+    "gameAssetId": "-1295139142",
+    "itemId": "shotgun_choke_iii",
+    "name": "Shotgun Choke III"
+  },
+  {
+    "gameAssetId": "-229932290",
+    "itemId": "acoustic_guitar",
+    "name": "Acoustic Guitar"
+  },
+  {
+    "gameAssetId": "-1915685401",
+    "itemId": "extended_light_mag_iii",
+    "name": "Extended Light Mag III"
+  },
+  {
+    "gameAssetId": "-637598838",
+    "itemId": "medium_gun_parts",
+    "name": "Medium Gun Parts"
+  },
+  {
+    "gameAssetId": "-518509289",
+    "itemId": "compensator_iii",
+    "name": "Compensator III"
+  },
+  {
+    "gameAssetId": "-728135783",
+    "itemId": "extended_medium_mag_ii",
+    "name": "Extended Medium Mag II"
+  },
+  {
+    "gameAssetId": "-799395426",
+    "itemId": "durable_cloth",
+    "name": "Durable Cloth"
+  },
+  {
+    "gameAssetId": "447242639",
+    "itemId": "dart_board",
+    "name": "Dart Board"
+  },
+  {
+    "gameAssetId": "-1268138127",
+    "itemId": "lil_smoke_grenade",
+    "name": "Li'l Smoke Grenade"
+  },
+  {
+    "gameAssetId": "-652794821",
+    "itemId": "vase",
+    "name": "Vase"
+  },
+  {
+    "gameAssetId": "1782410237",
+    "itemId": "playing_cards",
+    "name": "Playing Cards"
+  },
+  {
+    "gameAssetId": "149941307",
+    "itemId": "bloated_tuna_can",
+    "name": "Bloated Tuna Can"
+  },
+  {
+    "gameAssetId": "2066859179",
+    "itemId": "painted_box",
+    "name": "Painted Box"
+  },
+  {
+    "gameAssetId": "1449330526",
+    "itemId": "blue_light_stick_blueprint",
+    "name": "Blue Light Stick Blueprint"
+  },
+  {
+    "gameAssetId": "-1393457868",
+    "itemId": "lances_mixtape_5th_edition",
+    "name": "Lance's Mixtape (5th Edition)"
+  },
+  {
+    "gameAssetId": "1902251599",
+    "itemId": "rosary",
+    "name": "Rosary"
+  },
+  {
+    "gameAssetId": "-299391245",
+    "itemId": "tropical_duck",
+    "name": "Tropical Duck"
+  },
+  {
+    "gameAssetId": "2130940125",
+    "itemId": "red_coral_jewelry",
+    "name": "Red Coral Jewelry"
+  },
+  {
+    "gameAssetId": "-424524475",
+    "itemId": "gentle_duck",
+    "name": "Gentle Duck"
+  },
+  {
+    "gameAssetId": "-46535668",
+    "itemId": "air_freshener",
+    "name": "Air Freshener"
+  },
+  {
+    "gameAssetId": "1041760181",
+    "itemId": "pop_trigger",
+    "name": "Pop Trigger"
+  },
+  {
+    "gameAssetId": "-1333721780",
+    "itemId": "surveyor_vault",
+    "name": "Surveyor Vault"
+  },
+  {
+    "gameAssetId": "-887700247",
+    "itemId": "pottery",
+    "name": "Pottery"
+  },
+  {
+    "gameAssetId": "-853193179",
+    "itemId": "trigger_nade",
+    "name": "Trigger 'Nade"
+  },
+  {
+    "gameAssetId": "1967335777",
+    "itemId": "red_light_stick",
+    "name": "Red Light Stick"
+  },
+  {
+    "gameAssetId": "-237588358",
+    "itemId": "yellow_light_stick",
+    "name": "Yellow Light Stick"
+  },
+  {
+    "gameAssetId": "-2103368401",
+    "itemId": "stella_montis_security_checkpoint_key",
+    "name": "Stella Montis Security Checkpoint Key"
+  },
+  {
+    "gameAssetId": "1228913912",
+    "itemId": "explosive_mine",
+    "name": "Explosive Mine"
+  },
+  {
+    "gameAssetId": "-1116709774",
+    "itemId": "sentinel_firing_core",
+    "name": "Sentinel Firing Core"
+  },
+  {
+    "gameAssetId": "-600381599",
+    "itemId": "spotter_relay",
+    "name": "Spotter Relay"
+  },
+  {
+    "gameAssetId": "1506939307",
+    "itemId": "bettina_iv",
+    "name": "Bettina IV"
+  },
+  {
+    "gameAssetId": "-1331806078",
+    "itemId": "dam_testing_annex_key",
+    "name": "Dam Testing Annex Key"
+  },
+  {
+    "gameAssetId": "922097959",
+    "itemId": "extended_shotgun_mag_iii",
+    "name": "Extended Shotgun Mag III"
+  },
+  {
+    "gameAssetId": "-561477069",
+    "itemId": "poster_of_natural_wonders",
+    "name": "Poster of Natural Wonders"
+  },
+  {
+    "gameAssetId": "1148851826",
+    "itemId": "damaged_snitch_scanner",
+    "name": "Damaged Snitch Scanner"
+  },
+  {
+    "gameAssetId": "919315234",
+    "itemId": "breathtaking_snow_globe",
+    "name": "Breathtaking Snow Globe"
+  },
+  {
+    "gameAssetId": "-1506763647",
+    "itemId": "empty_wine_bottle",
+    "name": "Empty Wine Bottle"
+  },
+  {
+    "gameAssetId": "2141216040",
+    "itemId": "ruined_handcuffs",
+    "name": "Ruined Handcuffs"
+  },
+  {
+    "gameAssetId": "-1587726944",
+    "itemId": "broken_guidance_system",
+    "name": "Broken Guidance System"
+  },
+  {
+    "gameAssetId": "-2087334800",
+    "itemId": "statuette",
+    "name": "Statuette"
+  },
+  {
+    "gameAssetId": "-16809548",
+    "itemId": "patrol_car_key",
+    "name": "Patrol Car Key"
+  },
+  {
+    "gameAssetId": "-853744599",
+    "itemId": "venator_ii",
+    "name": "Venator II"
+  },
+  {
+    "gameAssetId": "-119018899",
+    "itemId": "venator_iii",
+    "name": "Venator III"
+  },
+  {
+    "gameAssetId": "168902929",
+    "itemId": "venator_iv",
+    "name": "Venator IV"
+  },
+  {
+    "gameAssetId": "352204774",
+    "itemId": "osprey_iv",
+    "name": "Osprey IV"
+  },
+  {
+    "gameAssetId": "1246914991",
+    "itemId": "recorder",
+    "name": "Recorder"
+  },
+  {
+    "gameAssetId": "394517119",
+    "itemId": "spaceport_warehouse_key",
+    "name": "Spaceport Warehouse Key"
+  },
+  {
+    "gameAssetId": "747891994",
+    "itemId": "torrente_iv",
+    "name": "Torrente IV"
+  },
+  {
+    "gameAssetId": "-423565474",
+    "itemId": "vita_shot_blueprint",
+    "name": "Vita Shot Blueprint"
+  },
+  {
+    "gameAssetId": "-427130921",
+    "itemId": "spaceport_control_tower_key",
+    "name": "Spaceport Control Tower Key"
+  },
+  {
+    "gameAssetId": "-844032381",
+    "itemId": "blue_gate_village_key",
+    "name": "Blue Gate Village Key"
+  },
+  {
+    "gameAssetId": "1657712312",
+    "itemId": "arpeggio_iv",
+    "name": "Arpeggio IV"
+  },
+  {
+    "gameAssetId": "-876378926",
+    "itemId": "queen_reactor",
+    "name": "Queen Reactor"
+  },
+  {
+    "gameAssetId": "592639485",
+    "itemId": "extended_shotgun_mag_ii",
+    "name": "Extended Shotgun Mag II"
+  },
+  {
+    "gameAssetId": "30472313",
+    "itemId": "osprey_iii",
+    "name": "Osprey III"
+  },
+  {
+    "gameAssetId": "1200348024",
+    "itemId": "buried_city_hospital_key",
+    "name": "Buried City Hospital Key"
+  },
+  {
+    "gameAssetId": "415465622",
+    "itemId": "bombardier_cell",
+    "name": "Bombardier Cell"
+  },
+  {
+    "gameAssetId": "-1411069838",
+    "itemId": "blue_light_stick",
+    "name": "Blue Light Stick"
+  },
+  {
+    "gameAssetId": "189050774",
+    "itemId": "stella_montis_medical_storage_key",
+    "name": "Stella Montis Medical Storage Key"
+  },
+  {
+    "gameAssetId": "2125834231",
+    "itemId": "torrente_iii",
+    "name": "Torrente III"
+  },
+  {
+    "gameAssetId": "-1318412075",
+    "itemId": "green_light_stick",
+    "name": "Green Light Stick"
+  },
+  {
+    "gameAssetId": "-2047792735",
+    "itemId": "stella_montis_assembly_admin_key",
+    "name": "Stella Montis Assembly Admin Key"
+  },
+  {
+    "gameAssetId": "-595016198",
+    "itemId": "torrente_ii",
+    "name": "Torrente II"
+  },
+  {
+    "gameAssetId": "191704511",
+    "itemId": "expired_pasta",
+    "name": "Expired Pasta"
+  },
+  {
+    "gameAssetId": "-1286103237",
+    "itemId": "very_comfortable_pillow",
+    "name": "Very Comfortable Pillow"
+  },
+  {
+    "gameAssetId": "-2014230306",
+    "itemId": "mushroom",
+    "name": "Mushroom"
+  },
+  {
+    "gameAssetId": "-141877207",
+    "itemId": "ruined_accordion",
+    "name": "Ruined Accordion"
+  },
+  {
+    "gameAssetId": "-976232170",
+    "itemId": "spaceport_container_storage_key",
+    "name": "Spaceport Container Storage Key"
+  },
+  {
+    "gameAssetId": "1640126922",
+    "itemId": "osprey_ii",
+    "name": "Osprey II"
+  },
+  {
+    "gameAssetId": "1984849488",
+    "itemId": "rattler_iv",
+    "name": "Rattler IV"
+  },
+  {
+    "gameAssetId": "-1010165368",
+    "itemId": "arpeggio_ii",
+    "name": "Arpeggio II"
+  },
+  {
+    "gameAssetId": "-868064320",
+    "itemId": "arpeggio_iii",
+    "name": "Arpeggio III"
+  },
+  {
+    "gameAssetId": "-1097499674",
+    "itemId": "volcanic_rock",
+    "name": "Volcanic Rock"
+  },
+  {
+    "gameAssetId": "-620731692",
+    "itemId": "__empty_slot__",
+    "name": "__empty_slot__"
+  },
+  {
+    "gameAssetId": "-1376425844",
+    "itemId": "familiar_duck",
+    "name": "Familiar Duck"
+  },
+  {
+    "gameAssetId": "-606557836",
+    "itemId": "flashy_duck",
+    "name": "Flashy Duck"
+  },
+  {
+    "gameAssetId": "1700565870",
+    "itemId": "doodly_duck",
+    "name": "Doodly Duck"
+  },
+  {
+    "gameAssetId": "1738639721",
+    "itemId": "rubber_duck",
+    "name": "Rubber Duck"
+  },
+  {
+    "gameAssetId": "-1833440778",
+    "itemId": "esr_analyzer",
+    "name": "ESR Analyzer"
+  },
+  {
+    "gameAssetId": "577885066",
+    "itemId": "first_wave_tape",
+    "name": "First Wave Tape"
+  },
+  {
+    "gameAssetId": "1655934613",
+    "itemId": "first_wave_compass",
+    "name": "First Wave Compass"
+  },
+  {
+    "gameAssetId": "352582521",
+    "itemId": "first_wave_rations",
+    "name": "First Wave Rations"
+  },
+  {
+    "gameAssetId": "-535817636",
+    "itemId": "lidar_scanner",
+    "name": "Lidar Scanner"
+  },
+  {
+    "gameAssetId": "1407760402",
+    "itemId": "extended_barrel",
+    "name": "Extended Barrel"
+  },
+  {
+    "gameAssetId": "-1537698006",
+    "itemId": "__empty_slot__",
+    "name": "__empty_slot__"
+  },
+  {
+    "gameAssetId": "-729027837",
+    "itemId": "frequency_modulation_box",
+    "name": "Frequency Modulation Box"
+  },
+  {
+    "gameAssetId": "1383004532",
+    "itemId": "seeker_grenade_blueprint",
+    "name": "Seeker Grenade Blueprint"
+  },
+  {
+    "gameAssetId": "-1475885807",
+    "itemId": "old_world_books",
+    "name": "Old World Books"
+  },
+  {
+    "gameAssetId": "-752661468",
+    "itemId": "matriarch_reactor",
+    "name": "Matriarch Reactor"
+  },
+  {
+    "gameAssetId": "-1884805671",
+    "itemId": "bettina_iii",
+    "name": "Bettina III"
+  },
+  {
+    "gameAssetId": "-1170955422",
+    "itemId": "ruined_parachute",
+    "name": "Ruined Parachute"
+  },
+  {
+    "gameAssetId": "373551009",
+    "itemId": "silver_teaspoon_set",
+    "name": "Silver Teaspoon Set"
+  },
+  {
+    "gameAssetId": "1150280080",
+    "itemId": "alien_duck",
+    "name": "Alien Duck"
+  },
+  {
+    "gameAssetId": "-1113070540",
+    "itemId": "muzzle_brake_iii",
+    "name": "Muzzle Brake III"
+  },
+  {
+    "gameAssetId": "-658614890",
+    "itemId": "tactical_mk3_healing_blueprint",
+    "name": "Tactical MK.3 (Healing) Blueprint"
+  },
+  {
+    "gameAssetId": "-558241643",
+    "itemId": "wolfpack_blueprint",
+    "name": "Wolfpack Blueprint"
+  },
+  {
+    "gameAssetId": "278799395",
+    "itemId": "combat_mk3_aggressive_blueprint",
+    "name": "Combat Mk.3 (Aggressive) Blueprint"
+  },
+  {
+    "gameAssetId": "-300660362",
+    "itemId": "looting_mk3_survivor",
+    "name": "Looting Mk. 3 (Survivor)"
+  },
+  {
+    "gameAssetId": "464538122",
+    "itemId": "il_toro_blueprint",
+    "name": "Il Toro Blueprint"
+  },
+  {
+    "gameAssetId": "-113802073",
+    "itemId": "blue_gate_cellar_key",
+    "name": "Blue Gate Cellar Key"
+  },
+  {
+    "gameAssetId": "-2082046880",
+    "itemId": "major_aivas_patch",
+    "name": "Major Aiva's Patch"
+  },
+  {
+    "gameAssetId": "-1996442482",
+    "itemId": "blaze_grenade_trap",
+    "name": "Blaze Grenade Trap"
+  },
+  {
+    "gameAssetId": "827960562",
+    "itemId": "ruined_baton",
+    "name": "Ruined Baton"
+  },
+  {
+    "gameAssetId": "989020743",
+    "itemId": "pilgrims_peak_security_code",
+    "name": "Pilgrim's Peak Security Code"
+  },
+  {
+    "gameAssetId": "-1670118133",
+    "itemId": "ruined_riot_shield",
+    "name": "Ruined Riot Shield"
+  },
+  {
+    "gameAssetId": "1962618186",
+    "itemId": "resin",
+    "name": "Resin"
+  },
+  {
+    "gameAssetId": "392764783",
+    "itemId": "bettina_ii",
+    "name": "Bettina II"
+  },
+  {
+    "gameAssetId": "-1483497543",
+    "itemId": "aphelion",
+    "name": "Aphelion Rifle"
+  },
+  {
+    "gameAssetId": "-2074531633",
+    "itemId": "pulse_mine_blueprint",
+    "name": "Pulse Mine Blueprint"
+  },
+  {
+    "gameAssetId": "1876196827",
+    "itemId": "muzzle_brake_ii_blueprint",
+    "name": "Muzzle Brake II Blueprint"
+  },
+  {
+    "gameAssetId": "-1605165530",
+    "itemId": "tactical_mk3_defensive_blueprint",
+    "name": "Tactical Mk. 3 (Defensive) Blueprint"
+  },
+  {
+    "gameAssetId": "-1065915967",
+    "itemId": "raiders_refuge_security_code",
+    "name": "Raider's Refuge Security Code"
+  },
+  {
+    "gameAssetId": "-462994574",
+    "itemId": "jolt_mine_blueprint",
+    "name": "Jolt Mine Blueprint"
+  },
+  {
+    "gameAssetId": "-794870135",
+    "itemId": "remote_raider_flare_blueprint",
+    "name": "Remote Raider Flare Blueprint"
+  },
+  {
+    "gameAssetId": "-45026278",
+    "itemId": "green_light_stick_blueprint",
+    "name": "Green Light Stick Blueprint"
+  },
+  {
+    "gameAssetId": "166538264",
+    "itemId": "torn_book",
+    "name": "Torn Book"
+  },
+  {
+    "gameAssetId": "-1418602101",
+    "itemId": "tagging_grenade_blueprint",
+    "name": "Tagging Grenade Blueprint"
+  },
+  {
+    "gameAssetId": "-871523219",
+    "itemId": "gas_grenade_trap",
+    "name": "Gas Grenade Trap"
+  },
+  {
+    "gameAssetId": "-2134681974",
+    "itemId": "ancient_fort_security_code",
+    "name": "Ancient Fort Security Code"
+  },
+  {
+    "gameAssetId": "1266735983",
+    "itemId": "explosive_mine_blueprint",
+    "name": "Explosive Mine Blueprint"
+  },
+  {
+    "gameAssetId": "886788187",
+    "itemId": "gas_mine_blueprint",
+    "name": "Gas Mine Blueprint"
+  },
+  {
+    "gameAssetId": "-700849739",
+    "itemId": "reinforced_reception_security_code",
+    "name": "Reinforced Reception Security Code"
+  },
+  {
+    "gameAssetId": "1117674957",
+    "itemId": "smoke_grenade_trap",
+    "name": "Smoke Grenade Trap"
+  },
+  {
+    "gameAssetId": "305351814",
+    "itemId": "lure_grenade",
+    "name": "Lure Grenade"
+  },
+  {
+    "gameAssetId": "-1934265965",
+    "itemId": "red_light_stick_blueprint",
+    "name": "Red Light Stick Blueprint"
+  },
+  {
+    "gameAssetId": "901535629",
+    "itemId": "yellow_light_stick_blueprint",
+    "name": "Yellow Light Stick Blueprint"
+  },
+  {
+    "gameAssetId": "-1804268766",
+    "itemId": "tactical_mk3_revival_blueprint",
+    "name": "Tactical Mk. 3 (Revival) Blueprint"
+  },
+  {
+    "gameAssetId": "-857337823",
+    "itemId": "extended_light_mag_ii_blueprint",
+    "name": "Extended Light Mag II Blueprint"
+  },
+  {
+    "gameAssetId": "-1061946916",
+    "itemId": "smoke_grenade_blueprint",
+    "name": "Smoke Grenade Blueprint"
+  },
+  {
+    "gameAssetId": "-1697595116",
+    "itemId": "muzzle_brake_iii_blueprint",
+    "name": "Muzzle Brake III Blueprint"
+  },
+  {
+    "gameAssetId": "920673300",
+    "itemId": "looting_mk3_safekeeper_blueprint",
+    "name": "Looting Mk. 3 (Safekeeper) Blueprint"
+  },
+  {
+    "gameAssetId": "-553283088",
+    "itemId": "combat_mk3_flanking_blueprint",
+    "name": "Combat Mk. 3 (Flanking) Blueprint"
+  },
+  {
+    "gameAssetId": "2038694529",
+    "itemId": "celeste_journal",
+    "name": "Celeste's Journal"
+  },
+  {
+    "gameAssetId": "-196900720",
+    "itemId": "vulcano_blueprint",
+    "name": "Vulcano Blueprint"
+  },
+  {
+    "gameAssetId": "878298795",
+    "itemId": "fireworks_box_blueprint",
+    "name": "Fireworks Box Blueprint"
+  },
+  {
+    "gameAssetId": "-1557112845",
+    "itemId": "vita_spray_blueprint",
+    "name": "Vita Spray Blueprint"
+  },
+  {
+    "gameAssetId": "1958396827",
+    "itemId": "snowball",
+    "name": "Snowball"
+  },
+  {
+    "gameAssetId": "-1936062178",
+    "itemId": "moisture_meter",
+    "name": "Moisture Meter"
+  },
+  {
+    "gameAssetId": "334814973",
+    "itemId": "stack_of_movie_tapes",
+    "name": "Stack of Movie Tapes"
+  },
+  {
+    "gameAssetId": "-2019875683",
+    "itemId": "acoustic_guitar",
+    "name": "Acoustic Guitar"
+  },
+  {
+    "gameAssetId": "-1841323035",
+    "itemId": "nutrient_meter",
+    "name": "Nutrient Meter"
+  },
+  {
+    "gameAssetId": "-318995282",
+    "itemId": "flushing_terminal_key",
+    "name": "Flushing Terminal Key"
+  },
+  {
+    "gameAssetId": "1956363264",
+    "itemId": "experimental_seed_sample",
+    "name": "Experimental Seed Sample"
+  },
+  {
+    "gameAssetId": "27010880",
+    "itemId": "burnt_out_candles",
+    "name": "Burnt-Out Candles"
+  },
+  {
+    "gameAssetId": "-946162568",
+    "itemId": "torn_book",
+    "name": "Torn Book"
+  },
+  {
+    "gameAssetId": "-1184915542",
+    "itemId": "damaged_leaper_pulse_unit",
+    "name": "damaged_leaper_pulse_unit"
+  },
+  {
+    "gameAssetId": "211788372",
+    "itemId": "possibly_toxic_plant",
+    "name": "Possibly Toxic Plant"
+  },
+  {
+    "gameAssetId": "988724345",
+    "itemId": "major_aivas_mementos",
+    "name": "Major Aiva's Mementos"
+  },
+  {
+    "gameAssetId": "1145275220",
+    "itemId": "espresso_machine_parts",
+    "name": "Espresso Machine Parts"
+  },
+  {
+    "gameAssetId": "1648154470",
+    "itemId": "agave_juice",
+    "name": "Agave Juice"
+  },
+  {
+    "gameAssetId": "1989094565",
+    "itemId": "firefly_burner",
+    "name": "Firefly Burner"
+  },
+  {
+    "gameAssetId": "-353362533",
+    "itemId": "comet_igniter",
+    "name": "Comet Igniter"
+  },
+  {
+    "gameAssetId": "1616284588",
+    "itemId": "dam_controlled_access_zone_key",
+    "name": "Dam Controlled Access Zone Key"
+  },
+  {
+    "gameAssetId": "-674121740",
+    "itemId": "project_heartwood_blueprints",
+    "name": "Project Heartwood Blueprints"
+  },
+  {
+    "gameAssetId": "893137827",
+    "itemId": "dusty_film_reel",
+    "name": "Dusty Film Reel"
+  },
+  {
+    "gameAssetId": "1348244387",
+    "itemId": "vaporizer_regulator",
+    "name": "Vaporizer Regulator"
+  },
+  {
+    "gameAssetId": "431449547",
+    "itemId": "assessor_matrix",
+    "name": "Assessor Matrix"
+  },
+  {
+    "gameAssetId": "307322161",
+    "itemId": "scout_patrol_note",
+    "name": "Scout Patrol Note"
+  },
+  {
+    "gameAssetId": "1249031667",
+    "itemId": "dolabra",
+    "name": "Dolabra"
+  },
+  {
+    "gameAssetId": "-828273506",
+    "itemId": "surge_coil",
+    "name": "Surge Coil"
+  },
+  {
+    "gameAssetId": "1082962588",
+    "itemId": "surge_coil_blueprint",
+    "name": "Surge Coil Blueprint"
+  },
+  {
+    "gameAssetId": "-979794626",
+    "itemId": "dolabra_blueprint",
+    "name": "Dolabra Blueprint"
+  },
+  {
+    "gameAssetId": "756732693",
+    "itemId": "canto_ii",
+    "name": "Canto II"
+  },
+  {
+    "gameAssetId": "-133724223",
+    "itemId": "canto_iii",
+    "name": "Canto III"
+  },
+  {
+    "gameAssetId": "2099640885",
+    "itemId": "canto_iv",
+    "name": "Canto IV"
+  },
+  {
+    "gameAssetId": "-1983989674",
+    "itemId": "official_shutdown_documentation",
+    "name": "Official Shutdown Documentation"
+  },
+  {
+    "gameAssetId": "-23348055",
+    "itemId": "secret_meeting_info",
+    "name": "Secret Meeting Info"
+  },
+  {
+    "gameAssetId": "-1333261430",
+    "itemId": "dodgers_note",
+    "name": "Dodger's Note"
+  },
+  {
+    "gameAssetId": "-764908128",
+    "itemId": "canto_i",
+    "name": "Canto I"
+  },
+  {
+    "gameAssetId": "744641056",
+    "itemId": "canto_blueprint",
+    "name": "Canto Blueprint"
+  },
+  {
+    "gameAssetId": "1015139423",
+    "itemId": "turbine_compressor",
+    "name": "Turbine Compressor"
+  },
+  {
+    "gameAssetId": "1867928291",
+    "itemId": "twilight_compass_ship_model",
+    "name": "\"Twilight Compass\" Ship Model"
+  },
+  {
+    "gameAssetId": "1529467338",
+    "itemId": "velocity_ship_model",
+    "name": "\"Velocity\" Ship Model"
+  },
+  {
+    "gameAssetId": "-2064796183",
+    "itemId": "sirena_dorata_ship_model",
+    "name": "\"Sirena Dorata\" Ship Model"
+  },
+  {
+    "gameAssetId": "1414923729",
+    "itemId": "leviathans_crown_ship_model",
+    "name": "\"Leviathan's Crown\" Ship Model"
+  }
+]

@@ -1,0 +1,89 @@
+{
+  "manifest_version": 3,
+  "name": "SHiESTYBUDDY",
+  "version": "1.0.2",
+  "description": "Official SHiESTYBUDDY extension for securely handling OAuth redirect flows",
+  "permissions": [
+    "storage",
+    "declarativeNetRequest",
+    "scripting",
+    "webRequest",
+    "alarms",
+    "cookies"
+  ],
+  "host_permissions": [
+    "https://id.embark.games/*",
+    "*://api.embark.games/*",
+    "*://*.embark.games/*",
+    "*://*.arcraiders.com/*",
+    "*://*.xboxlive.com/*",
+    "*://login.live.com/*",
+    "*://api.raidtheory.com/*",
+    "https://arctracker.io/*",
+    "http://127.0.0.1:49172/*",
+    "https://login.live.com/*",
+    "https://*.live.com/*",
+    "https://*.xboxlive.com/*",
+    "https://xsts.auth.xboxlive.com/*",
+    "https://steamcommunity.com/*",
+    "https://store.steampowered.com/*",
+    "https://ca.account.sony.com/*",
+    "https://*.playstation.com/*",
+    "https://www.epicgames.com/*",
+    "https://accounts.epicgames.com/*",
+    "https://*.shiesty.me/*",
+    "https://shiesty.me/*",
+    "http://127.0.0.1:49171/*",
+    "http://localhost:*/*"
+  ],
+  "icons": {
+    "16": "icons/favicon-16x16.png",
+    "32": "icons/favicon-32x32.png",
+    "48": "icons/favicon-48x48.png",
+    "128": "icons/favicon-128x128.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "js": ["content.js"],
+      "matches": [
+        "https://*.shiesty.me/*",
+        "https://shiesty.me/*",
+        "http://127.0.0.1:49171/*",
+        "http://localhost:*/*"
+      ],
+      "run_at": "document_start"
+    },
+    {
+      "all_frames": true,
+      "js": ["embark-login.js"],
+      "matches": ["https://id.embark.games/api/auth/login*"],
+      "run_at": "document_start"
+    },
+    {
+      "js": ["embark-content.js"],
+      "matches": ["https://id.embark.games/*"],
+      "run_at": "document_end"
+    }
+  ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "enabled": true,
+        "id": "oauth_redirect_rules",
+        "path": "rules.json"
+      }
+    ]
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/favicon-16x16.png",
+      "32": "icons/favicon-32x32.png",
+      "48": "icons/favicon-48x48.png",
+      "128": "icons/favicon-128x128.png"
+    }
+  }
+}

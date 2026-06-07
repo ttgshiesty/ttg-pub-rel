@@ -1,0 +1,45 @@
+{
+  "compilerOptions": {
+    "module": "ESNext",
+    "target": "ESNext",
+    "moduleResolution": "Bundler",
+
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+
+    "jsx": "react-jsx",
+
+    "types": ["vite/client"],
+
+    "allowJs": true,
+    "checkJs": false,
+
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+    "noUncheckedSideEffectImports": true,
+    "moduleDetection": "force",
+
+    "sourceMap": true,
+    "noEmit": true,
+
+    "strict": true,
+
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+
+    "skipLibCheck": true
+  },
+
+  "include": ["src"],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "build",
+    "src/data/*.js",
+    "src/**/*.js",
+    "src/generate-tags.ts",
+    "src/useMfBlueprints.ts"
+  ]
+}

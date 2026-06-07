@@ -1,0 +1,19 @@
+{
+  "version": "1.9",
+  "updatedAt": "2026-06-05T11:51:06.107Z",
+  "itemCount": 567,
+  "mapEventsVersion": "1.6",
+  "mapEventsUpdatedAt": "2026-05-23T10:10:14.853Z",
+  "eventsVersion": "1.23",
+  "eventsUpdatedAt": "2026-05-26T18:10:34.798Z",
+  "questsVersion": "1.4",
+  "questsUpdatedAt": "2026-05-23T10:10:14.853Z",
+  "questCount": 100,
+  "eventsEnabled": true,
+  "eventsDisabledReason": null,
+  "projectsVersion": "1.2",
+  "tradesVersion": "1.1",
+  "botsVersion": "1.1",
+  "mapsVersion": "1.1",
+  "userDataVersion": "1778090191796"
+}

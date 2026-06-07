@@ -1,0 +1,31 @@
+{
+  "name": "SHIESTY-RAIDERS",
+  "short_name": "SHiESTY-RAIDERS",
+  "icons": [
+    {
+      "src": "/client/public/icons/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/client/public/icons/favicon-128x128.png",
+      "sizes": "96x96",
+      "type": "image/webp"
+    },
+    {
+      "src": "/client/public/icons/favicon.png",
+      "sizes": "180x180",
+      "type": "image/webp"
+    },
+    {
+      "src": "/client/public/icons/shiesty-logo-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/webp",
+      "purpose": "maskable"
+    }
+  ],
+  "theme_color": "#130916",
+  "background_color": "#130916",
+  "display": "standalone",
+  "start_url": "/"
+}

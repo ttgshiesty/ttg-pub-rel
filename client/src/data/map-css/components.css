@@ -1,0 +1,1907 @@
+/* --- rarity Filter Pills --- */
+.filter-bar {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.filter-pill {
+  background: rgba(20, 20, 28, 0.85);
+  border: 1px solid #333340;
+  color: #777;
+  padding: 5px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  transition: all 0.2s;
+}
+
+.filter-pill:hover {
+  border-color: var(--pill-color, #4a6fa5);
+  color: var(--pill-color, #fff);
+}
+
+.filter-pill.active {
+  border-color: var(--pill-color, #4a6fa5);
+  color: var(--pill-color, #fff);
+  background: rgba(20, 20, 28, 0.95);
+  box-shadow: 0 0 10px
+    color-mix(in srgb, var(--pill-color, #4a6fa5) 30%, transparent);
+}
+
+/* --- Inventory Bar (bottom) --- */
+#inventory-bar {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  padding: 12px 20px 16px;
+  background: linear-gradient(
+    to top,
+    rgba(10, 10, 15, 0.95) 0%,
+    rgba(10, 10, 15, 0.85) 100%
+  );
+  border-top: 1px solid rgba(74, 111, 165, 0.2);
+  pointer-events: none;
+}
+
+#inventory-slots {
+  display: flex;
+  gap: 6px;
+  pointer-events: auto;
+}
+
+.inventory-slot {
+  width: 56px;
+  height: 56px;
+  background:
+    radial-gradient(
+      circle at 85% 15%,
+      transparent 20%,
+      color-mix(in srgb, var(--slot-color) 60%, transparent) 100%
+    ),
+    rgba(20, 20, 28, 0.9);
+  border: 2px solid var(--slot-color, #2a2a35);
+  border-radius: 6px;
+  cursor: pointer;
+  transition:
+    border-width 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease,
+    background 0.25s ease;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+.inventory-slot:hover,
+.inventory-slot.active,
+.inventory-slot.hotbar-hovered {
+  border-width: 3px 3px 10px 3px;
+  box-shadow:
+    0 0 20px var(--slot-color),
+    0 4px 12px rgba(0, 0, 0, 0.6);
+}
+
+.inventory-slot::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  right: -6px;
+  bottom: -14px;
+  border-radius: 10px;
+  padding: 2px;
+  --gradient-angle: 0deg;
+  background: conic-gradient(
+      from var(--gradient-angle) at 50% 50%,
+      #1a1a20 0deg,
+      #e879f9 70deg,
+      #ffffff 150deg,
+      #00d4ff 240deg,
+      #1a1a20 310deg,
+      #1a1a20 360deg
+    )
+    border-box;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+  filter: blur(1.5px);
+}
+
+.inventory-slot:hover::before,
+.inventory-slot.active::before,
+.inventory-slot.hotbar-hovered::before {
+  opacity: 0.9;
+  animation: smoothRotate 3s linear infinite;
+}
+
+.inventory-slot::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  background: radial-gradient(
+    circle at top right,
+    transparent 16px,
+    var(--slot-color) 16px
+  );
+  opacity: 0;
+  transform: scale(0);
+  transform-origin: bottom left;
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+  pointer-events: none;
+}
+
+.inventory-slot:hover::after,
+.inventory-slot.active::after,
+.inventory-slot.hotbar-hovered::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.inventory-slot-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 8px;
+}
+
+.inventory-slot-rarity {
+  display: none;
+}
+
+/* --- Markers --- */
+.keycard-marker {
+  position: relative;
+  cursor: pointer;
+  width: 45px;
+  height: 68px;
+  /* Taller to accommodate icon above dot with gap */
+  overflow: visible !important;
+}
+
+.keycard-marker.selected {
+  display: flex !important;
+  align-items: flex-end !important;
+  overflow: visible !important;
+  z-index: 10000 !important;
+}
+
+.marker-dot {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.4);
+  box-shadow:
+    0 0 8px currentColor,
+    0 0 12px currentColor,
+    inset 0 0 4px currentColor;
+  animation: pulse 2s infinite;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.marker-icon-container {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 45px;
+  height: 45px;
+  background:
+    radial-gradient(
+      circle at 85% 15%,
+      transparent 20%,
+      color-mix(in srgb, currentColor 60%, transparent) 100%
+    ),
+    rgba(20, 20, 28, 0.9);
+  border: 2px solid currentColor;
+  border-radius: 5px;
+  cursor: pointer;
+  transition:
+    border-width 0.2s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  z-index: 1;
+}
+
+.keycard-marker:hover .marker-icon-container,
+.keycard-marker.hotbar-hovered .marker-icon-container {
+  border-width: 2.4px 2.4px 8px 2.4px;
+  transform: translateX(-50%) translateY(-1.6px);
+  box-shadow:
+    0 0 16px currentColor,
+    0 3.2px 9.6px rgba(0, 0, 0, 0.6);
+}
+
+.marker-icon-container::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -11px;
+  border-radius: 8px;
+  padding: 1.5px;
+  --gradient-angle: 0deg;
+  background: conic-gradient(
+      from var(--gradient-angle) at 50% 50%,
+      #1a1a20 0deg,
+      #e879f9 70deg,
+      #ffffff 150deg,
+      #00d4ff 240deg,
+      #1a1a20 310deg,
+      #1a1a20 360deg
+    )
+    border-box;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+  filter: blur(1.2px);
+}
+
+.marker-icon-container::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  background: radial-gradient(
+    circle at top right,
+    transparent 12px,
+    currentColor 12px
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.keycard-marker:hover .marker-icon-container::before,
+.keycard-marker.hotbar-hovered .marker-icon-container::before {
+  top: -5.4px;
+  left: -5.4px;
+  right: -5.4px;
+  bottom: -11px;
+  opacity: 0.9;
+  animation: smoothRotate 3s linear infinite;
+}
+
+.marker-icon-container::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 12.8px;
+  height: 12.8px;
+  background: radial-gradient(
+    circle at top right,
+    transparent 12.8px,
+    currentColor 12.8px
+  );
+  opacity: 0;
+  transform: scale(0);
+  transform-origin: bottom left;
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.keycard-marker:hover .marker-icon-container::after,
+.keycard-marker.hotbar-hovered .marker-icon-container::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.marker-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 6.4px;
+}
+
+.marker-icon-rarity {
+  display: none;
+}
+
+/* Selected marker: icon grows in-place, card anchored absolutely to the right */
+.keycard-marker.selected .marker-icon-container.selected-icon-grow {
+  width: 56px;
+  height: 56px;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 3px 3px 10px 3px;
+  box-shadow:
+    0 0 20px currentColor,
+    0 4px 12px rgba(0, 0, 0, 0.6);
+  z-index: 10;
+  animation: iconGrowIn 0.35s ease-out both;
+}
+
+.keycard-marker.selected
+  .marker-icon-container.selected-icon-grow
+  .marker-icon {
+  padding: 8px;
+}
+
+.keycard-marker.selected .marker-icon-container.selected-icon-grow::before {
+  top: -6px;
+  left: -6px;
+  right: -6px;
+  bottom: -13px;
+  opacity: 0.9;
+  animation:
+    glowFadeIn 0.4s ease-out both,
+    smoothRotate 3s linear 0.2s infinite;
+}
+
+.keycard-marker.selected .marker-icon-container.selected-icon-grow::after {
+  opacity: 1;
+  transform: scale(1);
+  animation: notchFadeIn 0.3s ease-out 0.15s both;
+}
+
+.marker-card-anchor {
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: 12px;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.marker-card {
+  background: linear-gradient(180deg, #f5f0e8 0%, #ede8df 100%);
+  border: none;
+  border-radius: 12px;
+  min-width: 340px;
+  max-width: 384px;
+  max-height: 560px;
+  overflow: hidden;
+  pointer-events: none;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 4px 16px rgba(0, 0, 0, 0.2);
+  color: #1a1a1a;
+  font-family:
+    'Rajdhani', 'Arial Narrow', 'Helvetica Neue Condensed', 'Roboto Condensed',
+    sans-serif;
+  display: flex;
+  flex-direction: column;
+  animation: cardSlideIn 0.4s ease-out 0.1s both;
+}
+
+.marker-card-tags {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 14px 14px 8px;
+}
+
+.marker-card-tag-box {
+  font-size: 16px;
+  font-weight: 700;
+  font-family: 'Rajdhani', 'Arial Narrow', sans-serif;
+  letter-spacing: 0.04em;
+  padding: 6px 12px 4px;
+  border: none;
+  border-radius: 3px;
+  color: #011017;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 30px;
+  height: 30px;
+  text-transform: uppercase;
+}
+
+.marker-card-tag-box .tag-key-icon {
+  position: relative;
+  top: -2px;
+  left: -2px;
+  width: 22px;
+  height: 22px;
+}
+
+.marker-card-tags.rarity-epic .marker-card-tag-box {
+  color: #ffffff;
+}
+
+.marker-card-title {
+  font-family: 'Rajdhani', 'Arial Narrow', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  padding: 6px 14px 8px;
+  line-height: 1.2;
+  color: #000000;
+  text-transform: uppercase;
+  font-stretch: expanded;
+}
+
+.marker-card-door {
+  width: calc(100% - 28px);
+  height: 110px;
+  object-fit: cover;
+  display: block;
+  margin: 4px 14px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(139, 115, 85, 0.3);
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.15),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+}
+
+.marker-card-body {
+  flex: 1;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.marker-card-section {
+  padding: 6px 14px;
+}
+
+.marker-card-section-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  margin-bottom: 3px;
+  color: #8a7a68;
+  text-transform: uppercase;
+}
+
+.marker-card-section-text {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.35;
+  color: #2a2420;
+}
+
+/* No line-clamp — card grows to fit all text */
+.marker-card-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  padding: 0;
+  background: #c9bba8;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-top: auto;
+  flex-shrink: 0;
+  min-height: 34px;
+}
+
+.marker-card-footer span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  flex: 1;
+  padding: 8px 0;
+}
+
+.marker-card-footer .footer-divider {
+  width: 1px;
+  align-self: stretch;
+  background: linear-gradient(180deg, #f5f0e8, #ede8df);
+  flex-shrink: 0;
+}
+
+.marker-card-footer img {
+  width: 14px;
+  height: 14px;
+  vertical-align: middle;
+  display: inline-block;
+  opacity: 0.8;
+}
+
+.marker-label {
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: 8px;
+  pointer-events: none;
+  opacity: 0.9;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.marker-label-name {
+  white-space: nowrap;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-shadow:
+    0 0 4px rgba(0, 0, 0, 0.8),
+    0 0 8px rgba(0, 0, 0, 0.6),
+    1px 1px 2px rgba(0, 0, 0, 1);
+}
+
+.marker-label-image {
+  width: 120px;
+  height: 68px;
+  object-fit: cover;
+  border: 2px solid currentColor;
+  border-radius: 4px;
+  box-shadow:
+    0 0 8px rgba(0, 0, 0, 0.8),
+    0 0 12px currentColor;
+}
+
+.keycard-marker.selected .marker-dot {
+  border-color: rgba(255, 255, 255, 0.5);
+  animation: pulse-selected 1.5s infinite;
+}
+
+.keycard-marker.selected .marker-label {
+  opacity: 1;
+}
+
+.keycard-marker.selected .marker-label-name {
+  font-weight: 700;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes pulse-selected {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 12px currentColor;
+  }
+
+  50% {
+    opacity: 0.8;
+    box-shadow: 0 0 20px currentColor;
+  }
+}
+
+@keyframes rotateBorder {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes gradientSweep {
+  0% {
+    background-position: -100% -100%;
+  }
+
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
+@keyframes smoothRotate {
+  from {
+    --gradient-angle: 0deg;
+  }
+
+  to {
+    --gradient-angle: 360deg;
+  }
+}
+
+@keyframes glowFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 0.9;
+  }
+}
+
+@keyframes notchFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes iconGrowIn {
+  from {
+    transform: translateX(-50%) scale(0.75);
+    opacity: 0.4;
+  }
+
+  to {
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes cardSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* --- Map Lines SVG --- */
+.map-lines-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 4;
+  overflow: visible;
+}
+
+/* --- Map Markers --- */
+#map-markers {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 6;
+}
+
+#map-events {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 7;
+}
+
+.map-marker {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: var(--map-marker-size, clamp(12px, 1.9cqw, 22px));
+  height: var(--map-marker-size, clamp(12px, 1.9cqw, 22px));
+  border-radius: 50%;
+  background: rgba(15, 20, 35, 0.55);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  box-sizing: border-box;
+  /* Ensures border doesn't shift contents */
+}
+
+.map-marker-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 45%;
+  height: 45%;
+  border-radius: 50%;
+  background: #ffffff;
+  pointer-events: none;
+}
+
+.map-marker.active-marker {
+  border: 2px solid #f9eddf;
+  /* Increased border size */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  background: rgba(15, 20, 35, 0.9);
+  /* Darken inner background to make yellow pop */
+  box-sizing: border-box;
+  /* Ensure border doesn't misalign inner dot */
+}
+
+.map-marker.active-marker .map-marker-dot {
+  background: #ff9f1c;
+}
+
+/* --- Map Nodes --- */
+.map-node {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  /* Centered on coord */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  z-index: 10;
+  pointer-events: auto;
+  /* Enable hover/click */
+  transition: z-index 0.2s;
+  /* Removed transform transition on parent */
+}
+
+.map-node:hover {
+  z-index: 100;
+}
+
+.map-node-label-container {
+  padding: 8px;
+  /* Hitbox buffer */
+  cursor: pointer;
+}
+
+/* Label (Diamond + Name) */
+.map-node-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  /* Slightly reduced gap */
+  background: rgba(15, 20, 35, 0.55);
+  /* Revert to comfortable global padding; we'll trim whitespace in the Uncovered Caches icon instead */
+  padding: clamp(2px, 0.4cqw, 4px) clamp(6px, 0.8cqw, 8px);
+  /* Tighter padding */
+  border-radius: 6px;
+  border: 1.5px solid rgba(160, 160, 168, 0.5);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  transform-origin: center center;
+  /* Lock a consistent vertical size so tags do not grow taller when an icon is present */
+  height: 22px;
+  box-sizing: border-box;
+}
+
+/* Only highlight label when label itself is hovered or active */
+@media (hover: hover) and (pointer: fine) {
+  .map-node-label-container:hover .map-node-label {
+    background: #f9eddf;
+    border-color: #f9eddf;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  }
+
+  .map-node-label-container:hover .node-text {
+    color: #131318;
+    text-shadow: none;
+  }
+
+  .map-node-label-container:hover .node-label-icon {
+    border-left-color: rgba(19, 19, 24, 0.2);
+    filter: invert(1) brightness(0.2);
+  }
+}
+
+.map-node-label.active-node {
+  background: #f9eddf;
+  border-color: #f9eddf;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.map-node-label.active-node .node-text {
+  color: #131318;
+  text-shadow: none;
+}
+
+.map-node-label.active-node .node-label-icon {
+  border-left-color: rgba(19, 19, 24, 0.2);
+  filter: invert(1) brightness(0.2);
+}
+
+/* Removed .node-indicator rules */
+
+.node-text {
+  font-family: 'Figtree', sans-serif;
+  font-size: clamp(0.62rem, 1.35cqw, 0.96rem);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #f2f2f7;
+  text-transform: uppercase;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
+}
+
+.node-label-icon {
+  width: 16px;
+  height: 11px;
+  object-fit: contain;
+  object-position: center;
+  /* Restore original horizontal gap between text and divider */
+  padding-left: 5px;
+  border-left: 1px solid rgba(255, 255, 255, 0.3);
+  /* Spacing from text */
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.3));
+}
+
+/* Narrow padding only when the Uncovered Caches icon is present */
+.map-node-label:has(
+  .node-label-icon[src*='UncoveredCaches']:not([style*='display: none'])
+) {
+  /* Restore comfortable left padding; add a bit of right-side breathing room */
+  padding: clamp(2px, 0.4cqw, 4px) clamp(4px, 0.6cqw, 6px);
+  padding-left: clamp(6px, 0.8cqw, 8px);
+  padding-right: 3px;
+  /* brought in right edge */
+  /* Keep divider visually centered between text and icon */
+  gap: 2px;
+}
+
+.node-label-icon[src*='UncoveredCaches'] {
+  /* Uncovered Caches minor icon: tuned size and spacing */
+  width: 21px;
+  height: 11px;
+  /* Bring in gap to divider */
+  padding-left: 2px;
+  margin-left: -2px;
+  margin-right: -4px;
+  /* Center the glyph inside its box */
+  object-position: center;
+  /* Reduce previous rightward nudge so it sits more centered */
+  transform: translate(2px, 1px);
+}
+
+.node-label-icon[src*='Harvester'] {
+  width: 15px;
+  height: 10px;
+  padding-left: 6px;
+}
+
+.node-label-icon[src*='Launch%20Tower'],
+.node-label-icon[src*='Launch Tower'] {
+  width: 14px;
+  height: 14px;
+  padding-left: 6px;
+  margin-top: -1px;
+  margin-bottom: -1px;
+  margin-right: 0px;
+}
+
+/* Old badge styles removed */
+
+/* --- Special/Main Event (Large Icon) --- */
+.special-event-container {
+  padding: 8px;
+  /* Hitbox buffer */
+  margin-top: -8px;
+  /* Pull up to reduce visual gap */
+  cursor: pointer;
+  z-index: 20;
+  pointer-events: auto;
+}
+
+.special-event-visual {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  /* Remove transform transitions to avoid any pop/bubble animation */
+  transform-origin: top center;
+  position: relative;
+  /* enable ring overlay */
+}
+
+/* Main event icon img */
+.special-event-icon {
+  width: clamp(18px, 5.4cqw, 60px);
+  height: clamp(18px, 5.4cqw, 60px);
+  object-fit: contain;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+  transition:
+    filter 0.2s,
+    opacity 0.2s;
+}
+
+/* Independent hover for special event (active only) */
+/* Remove scale-up on hover/selection to prevent movement */
+.special-event-container.active:hover .special-event-visual,
+.special-event-container.active.selected-highlight .special-event-visual {
+  transform: none;
+}
+
+/* Ring overlay (inside border) around icon */
+.special-event-visual::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: clamp(18px, 5.4cqw, 60px);
+  height: clamp(18px, 5.4cqw, 60px);
+  border-radius: 50%;
+  box-sizing: border-box;
+  border: 3px solid transparent;
+  opacity: 0;
+  /* hidden until hover/selection */
+  pointer-events: none;
+}
+
+/* Upcoming (inactive) hover/selection: show light gray ring */
+.special-event-container.upcoming:hover .special-event-visual::after,
+.special-event-container.upcoming.selected-highlight
+  .special-event-visual::after {
+  opacity: 1;
+  border-color: #b6bcc8;
+  /* light gray ring */
+}
+
+/* Active hover/selection: show white ring */
+.special-event-container.active:hover .special-event-visual::after,
+.special-event-container.active.selected-highlight
+  .special-event-visual::after {
+  opacity: 1;
+  border-color: #ffffff;
+}
+
+/* Icon color is handled by swapping to a recolored SVG; avoid filter tints */
+
+/* Tag highlight states */
+/* Active events: solid light surface highlight on hover/selection */
+.special-event-container.active:hover .special-event-label,
+.special-event-container.active.selected-highlight .special-event-label,
+.special-event-label.selected-highlight:not(.upcoming-label) {
+  background: #f9eddf;
+  border-color: #f9eddf;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* Upcoming (inactive) tag highlight: same style as main but translucent */
+.special-event-container.upcoming:hover .special-event-label,
+.special-event-container.upcoming.selected-highlight .special-event-label,
+.special-event-label.upcoming-label.selected-highlight {
+  background: rgba(249, 237, 223, 0.55);
+  /* translucent #f9eddf */
+  border-color: rgba(249, 237, 223, 0.55);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* Active text highlight: dark text on light background */
+.special-event-container.active:hover .event-node-text,
+.special-event-container.active.selected-highlight .event-node-text,
+.special-event-label.selected-highlight:not(.upcoming-label) .event-node-text {
+  color: #131318;
+  text-shadow: none;
+}
+
+/* Upcoming (inactive) tag hover: keep translucent bg; text becomes light gray */
+.special-event-container.upcoming:hover .event-node-text,
+.special-event-container.upcoming.selected-highlight .event-node-text,
+.special-event-label.upcoming-label.selected-highlight .event-node-text {
+  color: #1a1410;
+  /* darker for readability on translucent bg */
+  font-weight: 600;
+  /* keep slightly lighter than active */
+}
+
+.special-event-timer {
+  background: rgba(10, 10, 15, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: clamp(0.6rem, 1.1cqw, 0.85rem);
+  font-weight: 700;
+  color: #e8e8f0;
+  white-space: nowrap;
+  backdrop-filter: blur(4px);
+  transition: all 0.2s;
+  pointer-events: auto;
+}
+
+/* Grayed out state for upcoming */
+.special-event-container.upcoming .special-event-icon {
+  filter: grayscale(1) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+  opacity: 0.4;
+}
+
+/* Upcoming highlighted: remove grayscale so the swapped yellow shows through; keep semi-transparency */
+.special-event-container.upcoming.selected-highlight .special-event-icon,
+.special-event-container.upcoming:hover.selected-highlight .special-event-icon {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+  opacity: 0.4;
+}
+
+.special-event-label.upcoming-label {
+  opacity: 0.5;
+  filter: grayscale(1);
+}
+
+/* Mobile close button — hidden on desktop, shown via media query on mobile */
+.mobile-close-btn {
+  display: none;
+}
+
+/* --- Upcoming Event Card (Secondary) --- */
+.home-card-upcoming {
+  margin-top: 0;
+  height: auto;
+  min-height: 0;
+  flex: 0 0 auto;
+  border: none;
+  background: #f9eddf;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.upcoming-header {
+  background: rgba(26, 20, 16, 0.08);
+  padding: 8px 16px;
+  font-family: 'Figtree', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: #8a7a68;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(26, 20, 16, 0.08);
+}
+
+.upcoming-body {
+  display: flex;
+  align-items: center;
+  padding: 14px 16px;
+  gap: 14px;
+}
+
+.upcoming-icon {
+  width: 24px;
+  height: 24px;
+  max-width: 24px;
+  max-height: 24px;
+  object-fit: contain;
+  filter: invert(1) opacity(0.6);
+  flex-shrink: 0;
+}
+
+.upcoming-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.upcoming-name {
+  font-family: 'Figtree', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #1a1410;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.upcoming-timer {
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.78rem;
+  color: #8a7a68;
+  font-weight: 600;
+}
+
+/* Event label container: column layout, right-aligned, gap controlled via CSS var */
+.special-event-label-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--event-label-gap, 4px);
+}
+
+/* Upcoming timer: muted gray */
+.special-event-label-wrapper.upcoming .special-event-timer {
+  color: #8888aa;
+  border-color: rgba(100, 100, 100, 0.3);
+}
+
+/* Active timer (default): dark bg, yellow numbers */
+.special-event-label-wrapper.active .special-event-timer {
+  color: #febb12;
+  border-color: #febb12;
+  background: rgba(10, 10, 15, 0.9);
+}
+
+/* Active timer hover/highlight: yellow bg, dark text */
+.special-event-label-wrapper.active:hover .special-event-timer,
+.special-event-label-wrapper.active.selected-highlight .special-event-timer,
+.special-event-timer:hover {
+  background: #febb12;
+  color: #131318;
+  border-color: #febb12;
+}
+
+/* Upcoming timer highlight: translucent cream bg */
+.special-event-label-wrapper.upcoming.selected-highlight .special-event-timer,
+.special-event-label-wrapper.upcoming:hover .special-event-timer {
+  background: rgba(249, 237, 223, 0.55);
+  color: #1a1410;
+  border-color: rgba(249, 237, 223, 0.55);
+}
+
+/* Double Points Tag */
+.double-points-tag {
+  background: rgba(0, 0, 0, 0.65);
+  border-radius: 20px;
+  padding: 4px 10px 4px 7px;
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.double-points-icon {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.double-points-text {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.05em;
+}
+
+/* --- Side Panel (right, ~25%) --- */
+.home-side-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  padding-top: 0;
+  z-index: 20;
+  position: relative;
+  min-width: 260px;
+  max-width: 380px;
+  gap: 16px;
+  overflow-y: auto;
+  padding-bottom: 16px;
+}
+
+/* --- Home Card (Game-Accurate Cream Design) --- */
+.home-card {
+  width: 100%;
+  flex: none;
+  flex-shrink: 0;
+  background: #f9eddf;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Card image area */
+.home-card-image-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2 / 1;
+  overflow: hidden;
+  flex-shrink: 0;
+  /* Remove bottom border-radius, keep top */
+  border-radius: 16px 16px 0 0;
+
+  /* Overlap into the body the amount of our bulge depth */
+  margin-bottom: -20px;
+  padding-bottom: 20px;
+  /* Keep the aspect ratio but add space for the bulge */
+  background: #0a0a0f;
+
+  /* True circle clip-path. 
+       Radius = 600px (approx 2x card width). Centered horizontally.
+       We place the circle center so the bottom edge dips exactly 20px into our padding. */
+  clip-path: circle(600px at 50% calc(100% - 600px - 20px));
+  z-index: 2;
+  /* Ensure it stays above the cream body */
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15));
+}
+
+.home-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.3s;
+}
+
+/* Difficulty badge — top-left image overlay */
+.home-card-difficulty {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.difficulty-label {
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.85);
+  text-transform: uppercase;
+}
+
+.difficulty-pips {
+  display: flex;
+  gap: 3px;
+}
+
+.pip {
+  width: 8px;
+  height: 6px;
+  border-radius: 1px;
+  background: rgba(255, 255, 255, 0.3);
+  transition: background 0.3s;
+}
+
+.pip.filled {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+/* Timer badge — top-right image overlay */
+.home-card-timer {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.home-card-timer-wrap {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(0, 0, 0, 0.65);
+  border-radius: 20px;
+  padding: 4px 10px 4px 7px;
+}
+
+.home-card-timer.active .home-card-timer-wrap {
+  background: #ff9f1c;
+}
+
+.home-card-timer.active .timer-value {
+  color: #1a1410;
+}
+
+.home-card-timer.active .timer-icon-img {
+  filter: invert(1);
+  mix-blend-mode: multiply;
+}
+
+.timer-icon-img {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  mix-blend-mode: screen;
+}
+
+.timer-value {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.05em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Card body — cream section */
+.home-card-body {
+  position: relative;
+  /* Removed z-index: 1 so the stacking context allows the absolute positioned child to break out
+       and sit above .home-card-image-wrap (which is z-index: 2 in the same parent) */
+  background: #f9eddf;
+  border-radius: 0 0 16px 16px;
+  padding: 36px 12px 12px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 3px;
+  transition: opacity 0.2s;
+  overflow-y: auto;
+}
+
+/* Removed .home-card-body::before since we now use border-radius on the image-wrap above */
+
+/* Event icon circle at image/body boundary */
+.home-card-icon-zone {
+  position: relative;
+  align-self: center;
+  margin-top: -24px;
+  margin-bottom: -24px;
+  z-index: 3;
+  /* Still z-index 3 to sit over the img-wrap (z-index: 2) and body */
+  transition: opacity 0.2s;
+  flex-shrink: 0;
+  overflow: visible;
+}
+
+.home-card-icon-circle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #131318;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  flex-shrink: 0;
+  overflow: visible;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.home-card-icon {
+  /* 62% naturally pads all the cropped 'Minor' White Icons safely inside the circle */
+  width: 62%;
+  height: 62%;
+  object-fit: contain;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.home-card-icon.is-main-svg {
+  /* Main SVGs have native transparent padding built into their geometry and need 100% capacity */
+  width: 100%;
+  height: 100%;
+  transform: scale(1.1);
+  /* Slight uniform bump for all main SVGs to match minor sizes */
+}
+
+.home-card-icon[src*='UncoveredCaches'] {
+  /* Fine-tuned size so it sits centered within the 48px circle without crowding */
+  width: 86%;
+  height: 86%;
+  object-fit: contain;
+  object-position: center;
+  transform: translate(2px, 2px);
+}
+
+.home-card-icon.is-matriarch {
+  /* Matriarch is the only Main SVG that doesn't have native padding, it fills its whole box */
+  width: 75%;
+  height: 75%;
+  transform: scale(0.9);
+}
+
+/* Location label (thin, small) */
+.home-card-map-name {
+  font-family: 'Figtree', sans-serif;
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: #8a7a68;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* Event/map title (bold headline) */
+.home-card-event-name {
+  font-family: 'Figtree', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: #1a1410;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.05;
+}
+
+/* Description body text */
+.home-card-description {
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.85rem;
+  line-height: 1.35;
+  color: #3a2e22;
+  margin-top: 6px;
+}
+
+/* Modifiers bullet list */
+.home-card-modifiers {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.modifier-item {
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.8rem;
+  color: #3a2e22;
+  padding-left: 12px;
+  position: relative;
+  line-height: 1.3;
+}
+
+.modifier-item::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #8a7a68;
+}
+
+/* INSPECT MAP button — dark rounded pill */
+.home-card-inspect-btn {
+  width: 100%;
+  margin-top: auto;
+  padding: 8px;
+  background: #1a1410;
+  border: none;
+  border-radius: 30px;
+  color: #fff;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.25s;
+}
+
+.home-card-inspect-btn:hover {
+  background: #2e2520;
+}
+
+.inspect-btn-icon {
+  color: currentColor;
+  flex-shrink: 0;
+}
+
+/* --- Fade transitions for panel content --- */
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.fade-in {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+/* --- Map Footer (below map only, not full-width) --- */
+.home-map-footer {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 0 12px;
+}
+
+.home-map-footer .map-grid {
+  display: flex;
+  gap: 10px;
+  flex: 1;
+}
+
+.home-map-footer .map-card {
+  flex: 1;
+  min-width: 0;
+}
+
+.home-credit {
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  color: #3a3a44;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.home-credit a {
+  color: #555;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.home-credit a:hover {
+  color: #ff9f1c;
+}
+
+/* =============================================
+   MOBILE RESPONSIVE
+   ============================================= */
+@media (max-width: 768px) {
+  .home-main {
+    flex-direction: column;
+    padding: 0;
+    gap: 0;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .home-map-column {
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+  }
+
+  .home-map-area {
+    flex: 1;
+    width: 100%;
+    min-height: 0;
+    /* Zoom in to reduce blank space around map */
+    transform: scale(1.25);
+    transform-origin: center center;
+  }
+
+  /* --- Header spacing --- */
+  .home-header {
+    padding: 12px 16px 8px;
+  }
+
+  .home-logo {
+    height: 44px;
+  }
+
+  /* --- Footer layout: stack vertically --- */
+  .home-map-footer {
+    flex-direction: column;
+    align-items: center;
+    padding: 6px 12px 8px;
+    gap: 6px;
+  }
+
+  .home-map-footer .map-grid {
+    overflow-x: visible;
+    width: 100%;
+    padding-bottom: 0;
+    gap: 6px;
+  }
+
+  /* --- Map cards: fill width equally, no scroll --- */
+  .home-map-footer .map-card {
+    flex: 1 1 0;
+    width: auto;
+    max-width: 80px;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .home-credit {
+    text-align: center;
+    opacity: 0.6;
+  }
+
+  .map-card-img {
+    border-radius: 6px;
+  }
+
+  /* Disable hover, snappy tap feedback */
+  .map-card:hover {
+    transform: none;
+  }
+
+  .map-card:active {
+    transform: scale(0.93);
+    transition: transform 0.1s ease;
+  }
+
+  /* --- Event overlays: scale down to fit small mobile map --- */
+  .special-event-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .special-event-visual::after {
+    width: 20px;
+    height: 20px;
+  }
+
+  .special-event-timer {
+    font-size: 0.42rem;
+    padding: 1px 4px;
+    border-radius: 3px;
+  }
+
+  .special-event-container {
+    padding: 4px;
+    margin-top: -4px;
+  }
+
+  .special-event-visual {
+    gap: 2px;
+  }
+
+  .node-text {
+    font-size: 0.48rem;
+    letter-spacing: 0.03em;
+  }
+
+  .event-node-text {
+    font-size: 0.42rem;
+  }
+
+  .map-node-label {
+    padding: 2px 4px;
+    gap: 4px;
+    height: 16px;
+    border-radius: 4px;
+  }
+
+  .map-node-label-container {
+    padding: 6px;
+  }
+
+  .map-node {
+    gap: 2px;
+  }
+
+  /* Shrink map marker dots on mobile */
+  .map-marker {
+    --map-marker-size: 8px;
+  }
+
+  /* Shrink node icons */
+  .node-label-icon {
+    width: 10px;
+    height: 7px;
+    padding-left: 3px;
+  }
+
+  /* Tighten double-points tag */
+  .double-points-tag {
+    padding: 2px 6px 2px 4px;
+    gap: 3px;
+    margin-top: 2px;
+  }
+
+  .double-points-icon {
+    width: 10px;
+    height: 10px;
+  }
+
+  .double-points-text {
+    font-size: 0.55rem;
+  }
+
+  /* Tighten label-to-timer gap in event labels on mobile */
+  .special-event-label-container {
+    --event-label-gap: 2px;
+  }
+
+  /* --- Side Panel: bottom sheet drawer --- */
+  .home-side-panel {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-width: 100%;
+    height: 70vh;
+    background: #f9eddf;
+    z-index: 1000;
+    transform: translateY(110%);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+    padding-top: 0;
+    margin-top: 0;
+    border-radius: 20px 20px 0 0;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    overflow: hidden;
+  }
+
+  .home-side-panel.open {
+    transform: translateY(0);
+  }
+
+  /* Drag handle pill */
+  .home-side-panel.open::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 36px;
+    height: 4px;
+    border-radius: 2px;
+    background: rgba(0, 0, 0, 0.15);
+    z-index: 2001;
+    pointer-events: none;
+  }
+
+  /* Mobile close button: hidden by default, shown only when panel is open */
+  .mobile-close-btn {
+    display: none;
+    position: absolute;
+    top: -50px;
+    right: 20px;
+    background: rgba(10, 10, 15, 0.85);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  }
+
+  /* More-specific selector wins over the hidden default above */
+  .home-side-panel.open .mobile-close-btn {
+    display: flex;
+  }
+
+  /* Main card fills available space above upcoming */
+  .home-card {
+    border-radius: 20px 20px 0 0;
+    box-shadow: none;
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .home-card-image-wrap {
+    aspect-ratio: 3 / 1;
+    margin-bottom: -14px;
+    padding-bottom: 14px;
+    clip-path: circle(600px at 50% calc(100% - 600px - 14px));
+  }
+
+  .home-card-icon-zone {
+    margin-top: -18px;
+    margin-bottom: -18px;
+  }
+
+  .home-card-icon-circle {
+    width: 38px;
+    height: 38px;
+  }
+
+  /* Card body scrolls internally so button is always reachable */
+  .home-card-body {
+    padding: 24px 14px 14px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    flex: 1;
+    min-height: 0;
+    gap: 3px;
+    border-radius: 0;
+  }
+
+  .home-card-description {
+    font-size: 0.8rem;
+    line-height: 1.3;
+    margin-top: 4px;
+  }
+
+  .home-card-modifiers {
+    gap: 0;
+  }
+
+  .modifier-item {
+    font-size: 0.75rem;
+    line-height: 1.25;
+  }
+
+  .home-card-inspect-btn {
+    padding: 10px;
+    font-size: 0.7rem;
+    margin-top: auto;
+    flex-shrink: 0;
+  }
+
+  /* Upcoming: pinned strip at very bottom of drawer */
+  .home-card-upcoming {
+    display: flex;
+    border-radius: 0;
+    box-shadow: none;
+    margin-top: 0;
+    flex: none;
+    background: #ede5d5;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .home-card-upcoming .upcoming-header {
+    padding: 6px 14px;
+    font-size: 0.55rem;
+  }
+
+  .home-card-upcoming .upcoming-body {
+    padding: 10px 14px;
+    gap: 10px;
+  }
+
+  .home-card-upcoming .upcoming-icon {
+    width: 20px;
+    height: 20px;
+    max-width: 20px;
+    max-height: 20px;
+  }
+
+  .home-card-upcoming .upcoming-name {
+    font-size: 0.78rem;
+  }
+
+  .home-card-upcoming .upcoming-timer {
+    font-size: 0.68rem;
+  }
+
+  .home-card-upcoming:last-child {
+    padding-bottom: env(safe-area-inset-bottom, 12px);
+  }
+}
+
+/* --- Small screen refinements --- */
+@media (max-width: 380px) {
+  .home-header .disclaimer {
+    display: none;
+  }
+
+  .home-logo {
+    height: 38px;
+  }
+
+  .home-card-body {
+    padding: 22px 10px 10px;
+    gap: 2px;
+  }
+
+  .home-card-event-name {
+    font-size: 0.85rem;
+  }
+
+  .home-card-map-name {
+    font-size: 0.52rem;
+  }
+
+  .home-card-description {
+    font-size: 0.78rem;
+  }
+}

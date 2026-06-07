@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://shiesty.me/sitemap.xml
+Host: https://shiesty.me

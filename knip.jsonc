@@ -1,0 +1,22 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+  "workspaces": {
+    ".": {
+      "entry": [
+        "server/server.js",
+        ".github/workflows/*.yml",
+      ],
+      "project": [
+        "server/**/*.js",
+        "scripts/**/*.{js,cjs,mjs,ts}",
+      ],
+      "ignore": ["server/services/*.before-fix-backup.js"],
+      "ignoreDependencies": ["pino-pretty"],
+    },
+    "client": {
+      "entry": ["src/App.tsx", "src/index.css"],
+      "project": ["src/**/*.{ts,tsx,js,jsx}"],
+      "ignore": ["src/generate-tags.ts"],
+    },
+  },
+}

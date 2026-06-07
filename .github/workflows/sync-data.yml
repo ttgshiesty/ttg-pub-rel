@@ -1,0 +1,201 @@
+name: Sync All Data from Upstream
+
+on:
+  push:
+    branches:
+      - workflow-disabled
+
+jobs:
+  sync-all-data:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Generate GitHub App token
+        id: app-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.GH_APP_ID }}
+          private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # ===== SYNC ITEMS =====
+      - name: Sync Items Data
+        id: sync_items
+        continue-on-error: true
+        run: |
+          mkdir -p temp-items
+
+          echo "📦 Downloading items data..."
+          # Get the list of files from the items folder via GitHub API
+          curl -s "https://api.github.com/repos/RaidTheory/arcraiders-data/contents/items?ref=main" | \
+            grep '"download_url"' | \
+            cut -d'"' -f4 | \
+            while read url; do
+              if [[ ! -z "$url" ]]; then
+                curl -s "$url" -o "temp-items/$(basename $url)"
+              fi
+            done
+
+          # Merge all JSON files into one
+          node -e "
+            const fs = require('fs');
+            const path = require('path');
+
+            const items = [];
+            const dir = 'temp-items';
+
+            fs.readdirSync(dir).forEach(file => {
+              if (file.endsWith('.json')) {
+                const content = JSON.parse(fs.readFileSync(path.join(dir, file), 'utf-8'));
+                items.push(content);
+              }
+            });
+
+            fs.writeFileSync('items-new.json', JSON.stringify(items, null, 2));
+            console.log('✓ Merged ' + items.length + ' items');
+          "
+
+          # Replace the current data with new data
+          mv items-new.json client/src/data/items-new.json
+
+          # Merge relationships from recipes/recycling
+          node scripts/merge-with-metaforge.js
+
+          # Remove duplicates
+          node scripts/remove-duplicates.js
+
+          # Generate changelog
+          node scripts/generate-changelog.js
+
+          # Clean up temporary directory
+          rm -rf temp-items
+
+          echo "✅ Items sync completed"
+
+      # ===== SYNC PROJECTS =====
+      - name: Sync Projects Data
+        id: sync_projects
+        continue-on-error: true
+        run: |
+          echo "🎯 Downloading projects data..."
+          curl -sL "https://raw.githubusercontent.com/RaidTheory/arcraiders-data/refs/heads/main/projects.json" -o data/projects.json
+          echo "✅ Projects sync completed"
+
+      # ===== SYNC QUESTS =====
+      - name: Sync Quests Data
+        id: sync_quests
+        continue-on-error: true
+        run: |
+          mkdir -p data/quests
+          cd data/quests
+
+          echo "📋 Downloading quests data..."
+          # Get list of quest files from GitHub API
+          QUEST_FILES=$(curl -s "https://api.github.com/repos/RaidTheory/arcraiders-data/contents/quests" | \
+            jq -r '.[] | select(.name | endswith(".json")) | .download_url')
+
+          # Download each quest file
+          echo "$QUEST_FILES" | while read url; do
+            filename=$(basename "$url")
+            echo "  - $filename"
+            curl -sL "$url" -o "$filename"
+          done
+
+          echo "✅ Quests sync completed ($(ls -1 *.json 2>/dev/null | wc -l) files)"
+
+      # ===== REGENERATE TAGS =====
+      - name: Regenerate Item Tags
+        id: regenerate_tags
+        continue-on-error: true
+        run: |
+          echo "🏷️  Regenerating item tags..."
+          npm ci
+          npm run generate-tags
+          echo "✅ Tags regenerated"
+
+      # ===== DETECT CONFLICTS =====
+      - name: Detect Sync Conflicts
+        id: detect_conflicts
+        continue-on-error: true
+        env:
+          POSTGRES_URL: ${{ secrets.POSTGRES_URL }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: |
+          echo "⚠️  Checking for conflicts with community edits..."
+          npx tsx scripts/detect-sync-conflicts.ts
+          echo "✅ Conflict detection completed"
+
+      # ===== CHECK FOR CHANGES =====
+      - name: Detect Changes
+        id: changes
+        run: |
+          # Check if any files have changed
+          if git diff --quiet; then
+            echo "changes_detected=false" >> $GITHUB_OUTPUT
+            echo "ℹ️  No changes detected"
+          else
+            echo "changes_detected=true" >> $GITHUB_OUTPUT
+            echo "✓ Changes detected"
+          fi
+
+      # ===== COMMIT AND PUSH TO MAIN =====
+      - name: Commit and Push Changes
+        if: steps.changes.outputs.changes_detected == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Add all data changes
+          git add data/
+
+          # Create commit with detailed message
+          ITEMS_STATUS="${{ steps.sync_items.outcome }}"
+          PROJECTS_STATUS="${{ steps.sync_projects.outcome }}"
+          QUESTS_STATUS="${{ steps.sync_quests.outcome }}"
+          TAGS_STATUS="${{ steps.regenerate_tags.outcome }}"
+
+          cat > commit-message.txt << EOF
+          chore: sync all data from upstream
+
+          Automated data synchronization from RaidTheory/arcraiders-data
+
+          Sync Results:
+          - Items: ${ITEMS_STATUS}
+          - Projects: ${PROJECTS_STATUS}
+          - Quests: ${QUESTS_STATUS}
+          - Tags: ${TAGS_STATUS}
+
+          Workflow: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          EOF
+
+          git commit -F commit-message.txt
+          git push origin main
+
+          echo "✅ Changes committed and pushed to main"
+
+      # ===== SUMMARY =====
+      - name: Workflow Summary
+        if: always()
+        run: |
+          echo "### 🔄 Data Sync Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Component | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|-----------|:------:|" >> $GITHUB_STEP_SUMMARY
+          echo "| Items | ${{ steps.sync_items.outcome == 'success' && '✅' || '❌' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Projects | ${{ steps.sync_projects.outcome == 'success' && '✅' || '❌' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Quests | ${{ steps.sync_quests.outcome == 'success' && '✅' || '❌' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Tags | ${{ steps.regenerate_tags.outcome == 'success' && '✅' || '❌' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Changes:** ${{ steps.changes.outputs.changes_detected == 'true' && 'Pushed to main ✓' || 'None detected' }}" >> $GITHUB_STEP_SUMMARY

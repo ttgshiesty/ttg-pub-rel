@@ -1,0 +1,79 @@
+# =========================
+# macOS / system junk
+# =========================
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# =========================
+# Dependencies
+# =========================
+node_modules/
+
+# =========================
+# Build output
+# =========================
+dist/
+build/
+.next/
+out/
+client/dist/
+client/build/
+server/dist/
+server/build/
+
+# =========================
+# Environment / secrets
+# =========================
+.env
+*.env
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+.aws/
+
+# =========================
+# S3 / AWS specific files
+# =========================
+upstream_changes.txt
+wiki-added-items-missing-images.txt
+
+# =========================
+# Logs
+# =========================
+*.log
+logs/
+
+# =========================
+# Cache
+# =========================
+.cache/
+cache/
+.vite/
+.turbo/
+.eslintcache
+
+# =========================
+# IDE / editor
+# =========================
+.vscode/
+.idea/
+*.code-workspace
+
+# =========================
+# Temporary files
+# =========================
+tmp/
+temp/
+*.tmp
+*.swp
+*.before-fix-backup.js
+unused/
+added/
+add/
+
+# =========================
+# Atlas build artifacts
+# =========================

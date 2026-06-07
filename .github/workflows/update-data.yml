@@ -1,0 +1,307 @@
+name: Update ARC Raiders Game Data
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+on:
+  schedule:
+    - cron: '0 */12 * * *' # Runs every 12 hours
+  push:
+    branches: [main]
+    paths:
+      - 'client/src/data/map-events/**'
+      - 'events-control.json'
+      - '.github/workflows/update-data.yml'
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: update-arc-raiders-game-data
+      cancel-in-progress: false
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Checkout RaidTheory data
+        uses: actions/checkout@v4
+        with:
+          repository: RaidTheory/arcraiders-data
+          path: raidtheory-data
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Process RaidTheory data and build database
+        run: |
+          node << 'EOF'
+          const fs = require('fs');
+          const path = require('path');
+
+          let dataChanged = false;
+
+          const bumpVersion = (v) => { 
+            const p = (v || "1.0").split('.'); 
+            return `${p[0]}.${parseInt(p[1] || 0) + 1}`; 
+          };
+
+          // Load current versions
+          let versions = { version: "1.0", mapEventsVersion: "1.0", eventsVersion: "1.0", questsVersion: "1.0", projectsVersion: "1.0" };
+          try { versions = JSON.parse(fs.readFileSync('./version.json', 'utf8')); } catch (e) {}
+
+          const getEnglish = (field) => {
+            if (!field) return null;
+            if (typeof field === 'string') return field;
+            if (typeof field === 'object' && field.en) return field.en;
+            return null;
+          };
+
+          // --- 1. PROCESS ITEMS ---
+          const itemsDir = './raidtheory-data/items';
+          if (fs.existsSync(itemsDir)) {
+            const localItemsDir = './client/src/data/items';
+            if (!fs.existsSync(localItemsDir)) fs.mkdirSync(localItemsDir, { recursive: true });
+            const files = fs.readdirSync(itemsDir).filter(f => f.endsWith('.json'));
+            let anyItemChanged = false;
+
+            for (const file of files) {
+              const upstreamItemPath = path.join(itemsDir, file);
+              const localItemPath = path.join(localItemsDir, file);
+
+              try {
+                const upstreamItemData = fs.readFileSync(upstreamItemPath, 'utf8');
+                let localItemData = '';
+                try { localItemData = fs.readFileSync(localItemPath, 'utf8'); } catch (e) {}
+
+                if (upstreamItemData !== localItemData) {
+                  fs.writeFileSync(localItemPath, upstreamItemData);
+                  anyItemChanged = true;
+                }
+              } catch (e) {
+                console.error(`Error processing item ${file}:`, e.message);
+              }
+            }
+
+            if (anyItemChanged) {
+              versions.version = bumpVersion(versions.version);
+              dataChanged = true;
+            }
+          }
+
+          // --- 2. QUESTS ---
+          // Quest updates are intentionally not auto-copied from RaidTheory here.
+          // The app uses client/src/data/quests-all.json as the curated quest source.
+
+          // --- 3. PROCESS ROOT CONFIGS ---
+          const syncRootFile = (fileName, localDest, versionKey) => {
+            const upstream = `./raidtheory-data/${fileName}`;
+            if (fs.existsSync(upstream)) {
+              const upstreamData = fs.readFileSync(upstream, 'utf8');
+              let localData = '';
+              try { localData = fs.readFileSync(localDest, 'utf8'); } catch (e) {}
+
+              if (upstreamData !== localData) {
+                const destDir = path.dirname(localDest);
+                if (!fs.existsSync(destDir)) fs.mkdirSync(destDir, { recursive: true });
+                fs.writeFileSync(localDest, upstreamData);
+                versions[versionKey] = bumpVersion(versions[versionKey]);
+                dataChanged = true;
+              }
+            }
+          };
+
+          syncRootFile('projects.json', './client/src/data/projects.json', 'projectsVersion');
+          syncRootFile('trades.json', './client/src/data/trades.json', 'tradesVersion');
+          syncRootFile('bots.json', './client/src/data/bots.json', 'botsVersion');
+          syncRootFile('maps.json', './client/src/data/maps.json', 'mapsVersion');
+
+          // --- 4. PROCESS MAP EVENTS & TIMELINES ---
+          const localMapEventsPath = './client/src/data/map-events/map-events.json';
+          const upstreamMapEventsPath = './raidtheory-data/map-events/map-events.json';
+          let mapEvents = null;
+
+          try {
+            const upstreamRaw = fs.existsSync(upstreamMapEventsPath)
+              ? fs.readFileSync(upstreamMapEventsPath, 'utf8')
+              : null;
+            let localRaw = '';
+            try { localRaw = fs.readFileSync(localMapEventsPath, 'utf8'); } catch (e) {}
+
+            if (upstreamRaw && upstreamRaw !== localRaw) {
+              mapEvents = JSON.parse(upstreamRaw);
+              fs.mkdirSync(path.dirname(localMapEventsPath), { recursive: true });
+              fs.writeFileSync(localMapEventsPath, JSON.stringify(mapEvents, null, 2));
+              versions.mapEventsVersion = bumpVersion(versions.mapEventsVersion);
+              dataChanged = true;
+              console.log("RaidTheory map events updated.");
+            } else if (localRaw) {
+              mapEvents = JSON.parse(localRaw);
+            } else {
+              throw new Error('Map events configuration missing locally and upstream.');
+            }
+          } catch (e) {
+            throw new Error(`Map events configuration invalid: ${e.message}`);
+          }
+
+          const eventsControlPath = './events-control.json';
+          let eventsEnabled = true;
+          let eventsDisabledReason = null;
+          try {
+            const control = JSON.parse(fs.readFileSync(eventsControlPath, 'utf8'));
+            if (typeof control.eventsEnabled === 'boolean') eventsEnabled = control.eventsEnabled;
+            if (control.disabledReason) eventsDisabledReason = control.disabledReason.trim();
+          } catch (e) {
+            fs.writeFileSync(eventsControlPath, JSON.stringify({ eventsEnabled: true, disabledReason: null }, null, 2));
+          }
+
+          // Generate rolling schedules/times (30-day window)
+          const now = new Date();
+          const startDateUtc = new Date(Math.floor(now.getTime() / 3600000) * 3600000);
+          const endDateUtc = new Date(startDateUtc.getTime() + 30 * 24 * 3600000);
+          const eventInstances = [];
+
+          const eventTypes = mapEvents.eventTypes || {};
+          const schedule = mapEvents.schedule || {};
+          const maps = mapEvents.maps || {};
+
+          for (const [mapId, mapSchedule] of Object.entries(schedule)) {
+            if (!mapSchedule) continue;
+            for (const category of ['major', 'minor']) {
+              const hours = mapSchedule[category] || {};
+              for (const [hourKey, eventTypeId] of Object.entries(hours)) {
+                if (!eventTypeId || eventTypeId === 'none' || !eventTypes[eventTypeId] || eventTypes[eventTypeId].disabled) continue;
+                const hour = parseInt(hourKey, 10);
+
+                for (let d = 0; d <= 30; d++) {
+                  const dayDate = new Date(startDateUtc.getTime() + d * 24 * 3600000);
+                  const startTime = new Date(Date.UTC(dayDate.getUTCFullYear(), dayDate.getUTCMonth(), dayDate.getUTCDate(), hour, 0, 0, 0));
+                  if (startTime < startDateUtc || startTime >= endDateUtc) continue;
+
+                  eventInstances.push({
+                    eventTypeId,
+                    eventName: eventTypes[eventTypeId].displayName || eventTypeId,
+                    category: eventTypes[eventTypeId].category || category,
+                    mapId,
+                    mapName: maps[mapId]?.displayName || mapId,
+                    startTime: startTime.getTime(),
+                    endTime: startTime.getTime() + 3600000
+                  });
+                }
+              }
+            }
+          }
+          eventInstances.sort((a, b) => a.startTime - b.startTime);
+
+          const eventsOutput = {
+            generatedAt: startDateUtc.toISOString(),
+            startTimeUtc: startDateUtc.toISOString(),
+            endTimeUtc: endDateUtc.toISOString(),
+            eventCount: eventInstances.length,
+            events: eventInstances
+          };
+
+          let timelinesChanged = false;
+          try {
+            timelinesChanged = fs.readFileSync('./events.json', 'utf8') !== JSON.stringify(eventsOutput);
+          } catch (e) { timelinesChanged = true; }
+
+          if (timelinesChanged) {
+            fs.writeFileSync('./events.json', JSON.stringify(eventsOutput, null, 2));
+            versions.eventsVersion = bumpVersion(versions.eventsVersion);
+            dataChanged = true;
+          }
+
+          if (dataChanged || versions.eventsEnabled !== eventsEnabled || versions.eventsDisabledReason !== eventsDisabledReason) {
+            versions.updatedAt = new Date().toISOString();
+            versions.eventsEnabled = eventsEnabled;
+            versions.eventsDisabledReason = eventsEnabled ? null : eventsDisabledReason;
+            fs.writeFileSync('./version.json', JSON.stringify(versions, null, 2));
+            fs.writeFileSync('./data_changed.txt', 'true');
+            console.log("Global game records updated.");
+          } else {
+            fs.writeFileSync('./data_changed.txt', 'false');
+            console.log("No new updates found upstream.");
+          }
+          EOF
+
+      - name: Sync MetaForge data into generated data
+        run: node ./scripts/sync-metaforge.mjs
+
+      - name: Check data changes status
+        id: check_changes
+        run: |
+          if [ -f data_changed.txt ] && [ "$(cat data_changed.txt)" = "true" ]; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+          fi
+          rm -f data_changed.txt
+
+      - name: Sync Game Data to MongoDB Database
+        if: steps.check_changes.outputs.changed == 'true' || github.event_name == 'schedule'
+        env:
+          MONGO_URL: ${{ secrets.MONGO_URL }}
+          MONGODB_DB: ${{ secrets.MONGODB_DB }}
+        run: |
+          if [ -z "$MONGO_URL" ]; then
+            echo "MongoDB setup missing. Skipping cloud upload."
+            exit 0
+          fi
+          npm install --no-save mongodb
+          node << 'EOF'
+          const fs = require('fs');
+          const path = require('path');
+          const { MongoClient } = require('mongodb');
+
+          function loadItemsDirectory(dirPath) {
+            const files = fs.readdirSync(dirPath).filter(f => f.endsWith('.json'));
+            const items = files
+              .map(file => JSON.parse(fs.readFileSync(path.join(dirPath, file), 'utf8')))
+              .filter(item => item && item.id)
+              .sort((a, b) => String(a.id).localeCompare(String(b.id)));
+            return {
+              generatedAt: new Date().toISOString(),
+              itemCount: items.length,
+              items
+            };
+          }
+
+          function loadPayload(file) {
+            if (file.type === 'itemsDirectory') return loadItemsDirectory(file.path);
+            return JSON.parse(fs.readFileSync(file.path, 'utf8'));
+          }
+
+          const dataFiles = [
+            { id: 'items', path: 'client/src/data/items', type: 'itemsDirectory' },
+            { id: 'quests', path: 'client/src/data/quests-all.json' },
+            { id: 'version', path: 'version.json' },
+            { id: 'map-events', path: 'client/src/data/map-events/map-events.json' },
+            { id: 'events', path: 'events.json' },
+            { id: 'projects', path: 'client/src/data/projects.json' },
+            { id: 'trades', path: 'client/src/data/trades.json' },
+            { id: 'bots', path: 'client/src/data/bots.json' },
+            { id: 'maps', path: 'client/src/data/maps.json' }
+          ];
+
+          async function run() {
+            const client = new MongoClient(process.env.MONGO_URL);
+            try {
+              await client.connect();
+              const db = process.env.MONGODB_DB ? client.db(process.env.MONGODB_DB) : client.db();
+              const collection = db.collection('gameData');
+
+              for (const file of dataFiles) {
+                if (!fs.existsSync(file.path)) continue;
+                const payload = loadPayload(file);
+                await collection.replaceOne({ _id: file.id }, { _id: file.id, payload, updatedAt: new Date() }, { upsert: true });
+                console.log(`Synced dynamic dataset: ${file.id}`);
+              }
+            } finally { await client.close(); }
+          }
+          run().catch(e => { console.error(e); process.exit(1); });
+          EOF

@@ -1,0 +1,21 @@
+# Arc Raiders Database Robots Configuration
+User-agent: *
+Allow: /
+Disallow: /.next/
+Disallow: /api/
+
+# Optimize crawling
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://shiesty.me/sitemap.xml
+
+# Google-specific
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Bing
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1

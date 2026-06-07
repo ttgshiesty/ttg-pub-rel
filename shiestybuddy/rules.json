@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "priority": 1,
+    "action": {
+      "type": "redirect",
+      "redirect": {
+        "regexSubstitution": "https://shiesty.me?embark_oauth_callback=1&\\1"
+      }
+    },
+    "condition": {
+      "regexFilter": "^http://127\\.0\\.0\\.1:49171/\\?(.*)$",
+      "resourceTypes": ["main_frame"]
+    }
+  }
+]

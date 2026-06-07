@@ -1,0 +1,3 @@
+[submodule "arctracker"]
+	path = arctracker
+	url = https://github.com/RaidTheory/arcraiders-data.git

@@ -1,0 +1,372 @@
+/**
+ * Event Data Manager - Unified abstraction layer for event data
+ * Handles loading and transforming event data from different formats
+ * Used by: Events page, Map pages, any other pages displaying events
+ */
+
+class EventDataManager {
+    constructor() {
+        this.eventData = null;
+        this.eventTypes = null;
+        this.maps = null;
+        this.dataFormat = null; // 'schedule' or 'events'
+    }
+
+    /**
+     * Load event data from JSON file
+     * @returns {Promise<boolean>} Success status
+     */
+    async load() {
+        try {
+            let response = await fetch('/api/events');
+            if (!response.ok) response = await fetch('/data/events.json');
+            const data = await response.json();
+            
+            this.eventData = data;
+            this.eventTypes = data.eventTypes || {};
+            this.maps = data.maps || [];
+            
+            // Detect format
+            if (data.events && Array.isArray(data.events)) {
+                this.dataFormat = 'events';
+                console.log('Event data loaded: timestamp-based format,', data.events.length, 'events');
+            } else if (data.schedule && Array.isArray(data.schedule)) {
+                this.dataFormat = 'schedule';
+                console.log('Event data loaded: 24-hour schedule format');
+            } else {
+                throw new Error('Unknown event data format');
+            }
+            
+            return true;
+        } catch (error) {
+            console.error('Error loading event data:', error);
+            return false;
+        }
+    }
+
+    /**
+     * Get all timeline events for display
+     * @param {Object} options - Options for filtering events
+     * @param {string} options.map - Filter by specific map
+     * @param {number} options.hoursAhead - How many hours ahead to show (default: 48)
+     * @returns {Array} Array of event objects with calculated times
+     */
+    getAllTimelineEvents(options = {}) {
+        if (!this.eventData) return [];
+
+        const now = new Date();
+        const map = options.map || null;
+        const hoursAhead = options.hoursAhead || 48;
+        const timeWindowMs = hoursAhead * 60 * 60 * 1000;
+
+        if (this.dataFormat === 'events') {
+            // New format: Use actual timestamped events
+            let events = this.eventData.events.map(event => {
+                const startTime = new Date(event.startTime);
+                const endTime = new Date(event.endTime);
+                const isActive = now >= startTime && now < endTime;
+                const isUpcoming = now < startTime;
+
+                return {
+                    name: event.name,
+                    map: event.map,
+                    type: event.type,
+                    startTime: startTime,
+                    endTime: endTime,
+                    isActive: isActive,
+                    isUpcoming: isUpcoming,
+                    localHour: startTime.getHours()
+                };
+            });
+
+            // Filter by time window
+            events = events.filter(event => {
+                const msUntilEnd = event.endTime - now;
+                const msUntilStart = event.startTime - now;
+                return msUntilEnd > 0 && (event.isActive || msUntilStart < timeWindowMs);
+            });
+
+            // Filter by map if specified
+            if (map) {
+                events = events.filter(event => event.map === map);
+            }
+
+            return events;
+        } 
+        
+        // Legacy format: Generate recurring events from 24-hour schedule
+        return this._generateLegacyEvents(map, hoursAhead);
+    }
+
+    /**
+     * Get events for timeline visualization (grouped by hour slot)
+     * @param {Object} options - Options for filtering events
+     * @returns {Array} Array of events for timeline display
+     */
+    getTimelineEvents(options = {}) {
+        const allEvents = this.getAllTimelineEvents(options);
+        const now = new Date();
+
+        // Group by map-type-hour to show one event per slot
+        const eventsBySlot = {};
+        
+        allEvents.forEach(event => {
+            const key = `${event.map}-${event.type}-${event.localHour}`;
+            
+            if (!eventsBySlot[key]) {
+                eventsBySlot[key] = event;
+            } else {
+                const existing = eventsBySlot[key];
+                
+                // Prefer active events over upcoming
+                if (event.isActive && !existing.isActive) {
+                    eventsBySlot[key] = event;
+                }
+                // If both active or both upcoming, prefer soonest
+                else if (event.isActive === existing.isActive) {
+                    if (event.startTime < existing.startTime) {
+                        eventsBySlot[key] = event;
+                    }
+                }
+            }
+        });
+
+        return Object.values(eventsBySlot);
+    }
+
+    /**
+     * Get only active events
+     * @param {string} map - Optional: filter by map
+     * @returns {Array} Array of currently active events
+     */
+    getActiveEvents(map = null) {
+        const allEvents = this.getAllTimelineEvents({ map, hoursAhead: 24 });
+        return allEvents.filter(event => event.isActive);
+    }
+
+    /**
+     * Get upcoming events in the next N hours
+     * @param {number} hours - Hours to look ahead
+     * @param {string} map - Optional: filter by map
+     * @returns {Array} Array of upcoming events
+     */
+    getUpcomingEvents(hours = 24, map = null) {
+        const allEvents = this.getAllTimelineEvents({ map, hoursAhead: hours });
+        return allEvents
+            .filter(event => event.isUpcoming)
+            .sort((a, b) => a.startTime - b.startTime);
+    }
+
+    /**
+     * Get event type information
+     * @param {string} eventName - Name of the event
+     * @returns {Object} Event type data (description, color)
+     */
+    getEventType(eventName) {
+        return this.eventTypes[eventName] || {
+            description: "",
+            color: "gray"
+        };
+    }
+
+    /**
+     * Check if data is loaded
+     * @returns {boolean}
+     */
+    isLoaded() {
+        return this.eventData !== null;
+    }
+
+    /**
+     * Get data format
+     * @returns {string} 'schedule' or 'events'
+     */
+    getFormat() {
+        return this.dataFormat;
+    }
+
+    /**
+     * Legacy: Generate events from 24-hour schedule format
+     * @private
+     */
+    _generateLegacyEvents(filterMap = null, hoursAhead = 48) {
+        const now = new Date();
+        const events = [];
+        const confirmedHours = this.eventData.confirmedHours || null;
+        
+        const eventDurationExceptions = {
+            // All events are 1 hour by default
+        };
+
+        this.eventData.schedule.forEach(slot => {
+            const utcHour = slot.hour;
+            const confirmed = !confirmedHours || confirmedHours.includes(utcHour);
+
+            this.maps.forEach(map => {
+                if (filterMap && map !== filterMap) return;
+                
+                const mapData = slot[map];
+                if (!mapData) return;
+
+                const createEvent = (eventName, eventType, dayOffset) => {
+                    const eventTime = new Date(Date.UTC(
+                        now.getUTCFullYear(),
+                        now.getUTCMonth(),
+                        now.getUTCDate() + dayOffset,
+                        utcHour,
+                        0, 0, 0
+                    ));
+                    const endTime = new Date(eventTime);
+                    const duration = eventDurationExceptions[eventName] || 1;
+                    endTime.setUTCHours(endTime.getUTCHours() + duration);
+
+                    const isActive = now >= eventTime && now < endTime;
+                    const isUpcoming = now < eventTime;
+
+                    return {
+                        name: eventName,
+                        map: map,
+                        type: eventType,
+                        confirmed: confirmed,
+                        startTime: eventTime,
+                        endTime: endTime,
+                        isActive: isActive,
+                        isUpcoming: isUpcoming,
+                        localHour: eventTime.getHours()
+                    };
+                };
+
+                // Generate for yesterday, today, tomorrow
+                [-1, 0, 1].forEach(dayOffset => {
+                    if (mapData.minor) {
+                        events.push(createEvent(mapData.minor, 'minor', dayOffset));
+                    }
+                    if (mapData.major) {
+                        events.push(createEvent(mapData.major, 'major', dayOffset));
+                    }
+                });
+            });
+        });
+
+        // Filter by time window
+        const timeWindowMs = hoursAhead * 60 * 60 * 1000;
+        return events.filter(event => {
+            const msUntilEnd = event.endTime - now;
+            const msUntilStart = event.startTime - now;
+            return msUntilEnd > 0 && (event.isActive || msUntilStart < timeWindowMs);
+        });
+    }
+}
+
+/**
+ * Inline SVG icons extracted from the official ARC Raiders site.
+ * Each value is a raw SVG string using fill="currentColor" so it inherits text color.
+ */
+const EVENT_ICONS = {
+    'Close Scrutiny': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41.52 44.47"><g fill="currentColor"><path d="m30.306 3.315-.02.02L26.952 0H14.564L3.355 11.21l.021.021L0 14.606v12.388l9.37 9.288V24.048L6.04 20.8 17.326 9.514l-.021-.022 3.452-3.452 11.287 11.287.02-.02 3.412 3.411-3.33 3.33v12.234l9.37-9.37V14.524z"/><path d="m14.5 21.188 6.237-6.238 6.238 6.238-6.238 6.238zM13.411 42.555h14.655v1.912H13.411zM13.411 37.555h14.655v3.676H13.411zM13.411 29.394h14.655v6.838H13.411z"/></g></svg>',
+    'Electromagnetic Storm': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25.38 47.89"><path fill="currentColor" d="m25.38 20.219-10.642-.11L18.995 0 0 27.685l10.481-.017-4.256 20.219z"/></svg>',
+    'Hidden Bunker': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 43.92 35.86"><g fill="currentColor"><path d="M0 31.954h43.923v3.904H0zM37.999 30.457h-9.761v-7.826c0-3.833-2.816-6.951-6.277-6.951s-6.277 3.118-6.277 6.951v7.826h-9.76v-7.826c0-9.214 7.195-16.711 16.037-16.711s16.037 7.497 16.037 16.711v7.826Z"/><path d="M43.923 30.457h-3.904v-8.496c0-9.957-8.1-18.057-18.057-18.057s-18.057 8.1-18.057 18.057v8.496H0v-8.496C0 9.852 9.852 0 21.962 0s21.961 9.852 21.961 21.961z"/></g></svg>',
+    'Hurricane': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0.22 0.6 89.56 84.81"><path fill="currentColor" fill-rule="evenodd" d="M73.772 71.622v-7.813c4.519 0 8.197-3.677 8.197-8.202 0-4.356-3.418-7.931-7.714-8.179v.003a6 6 0 0 0-.481-.018H.219v-7.812h73.464q.044-.002.089-.003.06 0 .118.003h.365v.009c8.604.253 15.526 7.332 15.526 15.997 0 8.827-7.181 16.015-16.009 16.015m-6.535-39.013v.012H6.229v-7.813h60.527q.245 0 .481-.018c4.297-.246 7.716-3.822 7.716-8.178 0-4.525-3.678-8.203-8.197-8.203-4.525 0-8.203 3.678-8.203 8.203h-7.812c0-8.828 7.187-16.015 16.015-16.015s16.009 7.187 16.009 16.015c0 8.665-6.923 15.744-15.528 15.997M52.543 53.391c8.605.253 15.528 7.332 15.528 15.997 0 8.828-7.181 16.015-16.009 16.015s-16.015-7.187-16.015-16.015h7.812c0 4.525 3.678 8.203 8.203 8.203 4.519 0 8.197-3.678 8.197-8.203 0-4.356-3.419-7.932-7.716-8.179a6 6 0 0 0-.481-.017H6.229v-7.813h46.314z"/></svg>',
+    'Locked Gate': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0.93 0.93 84.14 84.14"><path fill="currentColor" fill-rule="evenodd" d="M73.937 85.068V43c0-17.058-13.878-30.937-30.937-30.937S12.063 25.942 12.063 43v42.068H.932V43C.932 19.804 19.803.932 43 .932S85.068 19.804 85.068 43v42.068zM42.952 37.456a4.78 4.78 0 0 1 4.78 4.781v7.878h-9.56v-7.878a4.78 4.78 0 0 1 4.78-4.781m-5.518 29.06H19.535V43.068c0-12.938 10.526-23.464 23.465-23.464 12.937 0 23.464 10.526 23.464 23.464v42H55.332v-42c0-6.8-5.533-12.333-12.332-12.333-6.801 0-12.334 5.533-12.334 12.333v12.317h17.066v29.683H19.471V73.937h17.963z"/></svg>',
+    'Night Raid': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0.12 0.84 191.76 190.32"><path fill="currentColor" fill-rule="evenodd" d="M62.811 121.403c0-18.329 14.859-33.189 33.189-33.189s33.188 14.86 33.188 33.189S114.33 154.592 96 154.592s-33.189-14.859-33.189-33.189m40.564 69.755v-22.443c22.936-3.566 40.565-23.392 40.565-47.312 0-26.434-21.506-47.939-47.94-47.939s-47.94 21.505-47.94 47.939c0 23.92 17.629 43.745 40.564 47.312v22.443C39.122 187.388.121 146.057.121 95.59c0-47.936 35.18-87.652 81.128-94.748V15.83c-37.712 6.959-66.377 40.064-66.377 79.76 0 26.086 12.4 49.302 31.591 64.148-8.226-10.596-13.153-23.877-13.153-38.335 0-34.623 28.067-62.69 62.69-62.69s62.69 28.067 62.69 62.69c0 14.458-4.928 27.74-13.153 38.336 19.191-14.846 31.591-38.063 31.591-64.149 0-39.696-28.665-72.801-66.378-79.76V.842c45.949 7.096 81.129 46.812 81.129 94.748 0 50.467-39.001 91.798-88.504 95.568"/></svg>',
+    'Bird City': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0.54 0.12 82.92 81.76"><path fill="currentColor" fill-rule="evenodd" d="M.666 51.019 44.793 6.892c9.04-9.029 23.683-9.029 32.717.005L56.835 27.571A80.06 80.06 0 0 1 .666 51.019m59.556-39.234a3.92 3.92 0 0 0 3.917-3.916 3.92 3.92 0 0 0-3.917-3.918 3.92 3.92 0 0 0-3.917 3.918 3.92 3.92 0 0 0 3.917 3.916M.54 9.54l34.147.005-17.071 17.071zm44.157 56.547L33.646 55.035l22.099.004zM83.46 53.324 70.079 66.705A51.81 51.81 0 0 1 33.728 81.88l28.558-28.559c5.85-5.843 15.327-5.843 21.174.003m-11.189 3.164a2.536 2.536 0 0 0 2.535-2.535 2.537 2.537 0 0 0-2.535-2.535 2.54 2.54 0 0 0-2.535 2.535 2.537 2.537 0 0 0 2.535 2.535"/></svg>',
+    'Harvester': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180"><path fill="currentColor" fill-rule="evenodd" d="M161.543 144.602H83.144c-27.906 0-50.61-24.495-50.61-54.602h-13c0 37.276 28.535 67.602 63.61 67.602h66.263C133.557 171.542 112.767 180 90 180c-49.706 0-90-40.294-90-90 0-20.534 6.881-39.457 18.457-54.602h78.399c27.906 0 50.609 24.495 50.609 54.602h13c0-37.276-28.535-67.602-63.609-67.602H30.592C46.443 8.458 67.232 0 90 0c49.706 0 90 40.294 90 90 0 20.534-6.882 39.457-18.457 54.602M90 51.549 51.549 90 90 128.451 128.451 90zM70 90l20-20 19.1 20L90 109.1z"/></svg>',
+    'Launch Tower Loot': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0.41 0.34 65.19 87.31"><path fill="currentColor" fill-rule="evenodd" d="m48.848 16.637 16.747 71.019H35.643V.344h21.088V12.09h-5.552zm-31.696 0-2.331-4.547H9.269V.344h21.088v87.312H.405z"/></svg>',
+    'Matriarch': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0.92 0.14 136.16 137.06"><path fill="currentColor" fill-rule="evenodd" d="M111.671 126.488 86.232 101.05l25.731-25.731-25.731-25.722 25.439-25.438 25.411 25.402v51.525zM52.604 32.572l-16.2-16.205L52.627.145l16.402 16.401L85.424.145l16.223 16.222-16.199 16.205zM26.037 75.328l25.731 25.722-25.439 25.438L.918 101.086V49.561l25.411-25.402 25.439 25.438zM69 51.1l20 20-20 20-20.9-20zm30.133 86.108H38.918l30.108-30.152z"/></svg>',
+    'Uncovered Caches': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M20 2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2m-1 9h-4v4h-2v-4H9v4H7v-4H3V9h4V5h2v4h4V5h2v4h4z"/></svg>',
+    'Lush Blooms': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="51.7 59.9 152.75 144.25"><path fill="currentColor" d="m193.39 59.926 3.095.016q3.757.02 7.515.058.141 18.047.207 36.095.03 8.381.095 16.763.063 8.101.078 16.203.01 3.078.043 6.156c.115 11.308-.007 21.197-4.423 31.783l-1.145 2.753C192.35 184.558 179.702 194.897 165 201l-2.297.969c-6.65 2.287-13.149 2.175-20.094 2.105l-3.094-.016q-3.757-.02-7.515-.058a8736 8736 0 0 1-.207-36.095q-.03-8.382-.095-16.763-.063-8.102-.078-16.203a878 878 0 0 0-.043-6.156c-.115-11.308.007-21.197 4.423-31.783l1.145-2.753C143.65 79.442 156.298 69.103 171 63l2.297-.969c6.65-2.287 13.149-2.175 20.094-2.105M52 109q4.538-.043 9.074-.066c.85-.01 1.698-.018 2.573-.027 16.208-.067 30.564 5.674 42.291 16.833 10.15 10.14 17.993 23.666 18.29 38.3q-.002 2.792-.033 5.585l-.008 2.992c-.011 3.128-.036 6.255-.062 9.383q-.016 3.197-.027 6.395-.034 7.802-.098 15.605c-3.516.05-7.031.08-10.547.105l-2.995.043c-7.89.045-14.165-.984-21.458-4.148l-2.652-1.098C71.553 192.178 60.935 180.004 55 165c-2.449-7.421-3.423-14.125-3.293-21.918l.013-2.98c.016-3.096.054-6.193.093-9.29q.022-3.176.04-6.353c.033-5.153.085-10.306.147-15.459"/></svg>',
+    'Beachcombing': '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 47.2 43.02"><g fill="currentColor"><path d="M23.6 43.017h7.652c0-8.808 7.14-15.949 15.949-15.949v-7.652c-13.034 0-23.6 10.566-23.6 23.6Z"/><path d="M0 19.417v7.652c8.808 0 15.949 7.14 15.949 15.949h7.652c0-13.034-10.566-23.6-23.6-23.6ZM19.24 17.718a14.7 14.7 0 0 1 2.893 4.073 15 15 0 0 1 1.391 4.908h.152a15 15 0 0 1 1.391-4.908 14.96 14.96 0 0 1 6.974-6.974 15 15 0 0 1 4.908-1.391v-.152A14.895 14.895 0 0 1 23.675 0h-.152a14.895 14.895 0 0 1-13.274 13.274v.152a14.7 14.7 0 0 1 4.891 1.391 14.8 14.8 0 0 1 4.098 2.901Z"/></g></svg>',
+};
+
+window.EVENT_ICONS = EVENT_ICONS;
+
+/**
+ * Get the inline SVG icon for an event name, or empty string if none.
+ */
+window.getEventIcon = function(eventName) {
+    return EVENT_ICONS[eventName] || '';
+};
+
+// Create global instance
+window.EventDataManager = EventDataManager;
+
+// For backwards compatibility, also export if using modules
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = EventDataManager;
+}
+
+/**
+ * Event → filter URL preset mapping
+ * Add new events here as they are introduced
+ */
+const MAP_EVENT_FILTER_PRESETS = {
+    'Hurricane': {
+        filters: 'first-wave-cache,raider-cache',
+        scale: '1.00'
+    }
+};
+
+/**
+ * Show a non-intrusive notification prompt when a known event is active and
+ * the user has not already applied any filters.
+ *
+ * @param {EventDataManager} eventManager - Loaded EventDataManager instance
+ * @param {string} mapName - Map name matching the events.json maps list
+ */
+window.showMapEventNotification = function(eventManager, mapName) {
+    // Skip if URL already has filter params applied
+    if (new URLSearchParams(window.location.search).get('filters')) return;
+
+    const activeEvents = eventManager.getActiveEvents(mapName);
+    const match = activeEvents.find(e => MAP_EVENT_FILTER_PRESETS[e.name]);
+    if (!match) return;
+
+    const preset = MAP_EVENT_FILTER_PRESETS[match.name];
+
+    const el = document.createElement('div');
+    el.id = 'map-event-prompt';
+    el.className = 'map-event-prompt';
+    el.setAttribute('role', 'dialog');
+    el.setAttribute('aria-label', 'Active map event notification');
+    el.innerHTML = `
+        <div class="map-event-prompt-content">
+            <div class="map-event-prompt-info">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+                </svg>
+                <span><strong>${match.name}</strong> is active on this map — show event markers?</span>
+            </div>
+            <div class="map-event-prompt-actions">
+                <button class="map-event-prompt-btn map-event-prompt-yes">Yes</button>
+                <button class="map-event-prompt-btn map-event-prompt-no">No</button>
+            </div>
+        </div>`;
+
+    document.body.appendChild(el);
+
+    // Trigger slide-in on next frame
+    requestAnimationFrame(() => el.classList.add('map-event-prompt-visible'));
+
+    function dismiss() {
+        el.classList.remove('map-event-prompt-visible');
+        el.classList.add('map-event-prompt-hiding');
+        setTimeout(() => el.remove(), 350);
+    }
+
+    el.querySelector('.map-event-prompt-yes').addEventListener('click', () => {
+        if (typeof gtag === 'function') {
+            gtag('event', 'event_notification_accept', {
+                'event_category': 'Map Interaction',
+                'event_label': match.name,
+                'map_name': mapName
+            });
+        }
+        const url = new URL(window.location.href);
+        url.searchParams.set('filters', preset.filters);
+        url.searchParams.set('scale', preset.scale);
+        window.location.href = url.toString();
+    });
+
+    el.querySelector('.map-event-prompt-no').addEventListener('click', dismiss);
+};
+

@@ -1,0 +1,50 @@
+name: Check ARC Raiders Event Updates
+
+on:
+  push:
+    branches:
+      - workflow-disabled
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check-events:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Check for upstream ARC Raiders event/map changes
+        id: check_changes
+        shell: bash
+        run: |
+          set -e
+
+          if [ -s upstream_changes.txt ]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "No upstream_changes.txt found or file is empty."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create update issue
+        if: steps.check_changes.outputs.changed == 'true'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create \
+            --repo "$GITHUB_REPOSITORY" \
+            --title "New ARC Raiders events/maps detected" \
+            --body "1. Check if the new events/maps are live in the game
+          2. Add event types to \`eventTypes\` section
+          3. Add schedule entries to \`schedule\` section
+          4. Trigger workflow to regenerate events
+
+          _This issue was automatically created by the data update workflow._" \
+            --label "enhancement"
+
+          rm -f upstream_changes.txt
